@@ -12,6 +12,7 @@ export default function UserOrders() {
   }, [dispatch]);
 
   const orders = useSelector(selectUserOrders);
+  console.log(orders)
   return (
     <div>
       {orders.map((order) => (
@@ -86,6 +87,7 @@ export default function UserOrders() {
                     <div className="min-w-0 flex-auto">
                       <p className="text-sm font-semibold leading-6 text-gray-900">
                         {order.address.name}
+                        {console.log(order.address)}
                       </p>
                       <p className="mt-1 truncate text-xs leading-5 text-gray-500">
                         {order.address.street}

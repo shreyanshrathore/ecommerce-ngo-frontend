@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUserOrdersAsync, selectUserOrders } from "../userSlice";
+import { fetchLoggedInUserOrdersAsync, selectUserOrders, updateUserAsync } from "../userSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
-  console.log(user)
   useEffect(() => {
     dispatch(fetchLoggedInUserOrdersAsync(user.id));
   }, [dispatch]);
@@ -15,8 +14,10 @@ export default function UserOrders() {
 
   }
 
-  const handleRemove = () =>{
-
+  const handleRemove = (e, index) =>{
+    const newUser = {...user, addresses: [...user.addresses]}
+    newUser.addresses.splice(index,1)
+    dispatch(updateUserAsync(newUser))
   }
 
   const orders = useSelector(selectUserOrders);
@@ -39,7 +40,6 @@ export default function UserOrders() {
               
               <p className="mt-0.5 text-sm text-gray-500">
                 Your  Address : 
-                {console.log(user.addresses)}
                 
                   {user.addresses.map((address, index) => (
                     <div key={address.id} className="flex justify-between gap-x-6 px-5 py-5 border-solid border-2 border-gray-200">

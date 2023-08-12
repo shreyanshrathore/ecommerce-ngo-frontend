@@ -6,7 +6,7 @@ import { selectLoggedInUser } from "../features/auth/authSlice";
 import { useState } from "react";
 import { createOrdertAsync, selectCurrentOrder,  } from "../features/order/orderSlice";
 import { adressChange, paymentChange, selectItems } from "../features/cart/cartSlice";
-import { updateUserAsync } from "../features/user/userSlice";
+import { selectUserInfo, updateUserAsync } from "../features/user/userSlice";
 
 
 function Checkout() {
@@ -20,7 +20,7 @@ function Checkout() {
   } = useForm();
 
   const dispatch = useDispatch();
-  const user = useSelector(selectLoggedInUser)
+  const user = useSelector(selectUserInfo)
   const item = useSelector(selectItems)
   const [selectAddresses, setSelectAddresses] = useState(null)
   const [payment, setPayment] = useState("cash")
