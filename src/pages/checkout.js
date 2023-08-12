@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Cart from "../features/cart/cart";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
+import { selectLoggedInUser } from "../features/auth/authSlice";
 import { useState } from "react";
-import { createOrdertAsync } from "../features/order/orderSlice";
+import { createOrdertAsync, selectCurrentOrder,  } from "../features/order/orderSlice";
 import { adressChange, paymentChange, selectItems } from "../features/cart/cartSlice";
-
+import { updateUserAsync } from "../features/user/userSlice";
 
 
 function Checkout() {
@@ -24,6 +24,7 @@ function Checkout() {
   const item = useSelector(selectItems)
   const [selectAddresses, setSelectAddresses] = useState(null)
   const [payment, setPayment] = useState("cash")
+  const currentOrder = useSelector(selectCurrentOrder)
 
 
 
@@ -43,6 +44,7 @@ function Checkout() {
   
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {currentOrder && <Navigate to = {`/order-success/${currentOrder.id}`} replace = {true}></Navigate>}
       <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
         <div className="lg:col-span-3">
           <form

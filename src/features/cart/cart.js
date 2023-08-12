@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { adressChange, deleteItemAsync, paymentChange, selectAddress, selectItems, selectPayment, updateItemAsync } from "./cartSlice";
+import {
+  adressChange,
+  deleteItemAsync,
+  paymentChange,
+  selectAddress,
+  selectItems,
+  selectPayment,
+  updateItemAsync,
+} from "./cartSlice";
 
 import { Link, Navigate } from "react-router-dom";
 import { createOrdertAsync } from "../order/orderSlice";
@@ -9,9 +17,9 @@ import { selectLoggedInUser } from "../auth/authSlice";
 export default function Cart({ barValue }) {
   const products = useSelector(selectItems);
   const dispatch = useDispatch();
-  const address = useSelector(selectAddress)
-  const paymentMode = useSelector(selectPayment)
-  const user = useSelector(selectLoggedInUser)
+  const address = useSelector(selectAddress);
+  const paymentMode = useSelector(selectPayment);
+  const user = useSelector(selectLoggedInUser);
   const total = products.reduce(
     (amount, item) => item.price * item.quantity + amount,
     0
@@ -27,12 +35,11 @@ export default function Cart({ barValue }) {
     dispatch(deleteItemAsync(id));
   };
 
-
-  const handleOrder = (e) =>{
-    console.log(e.target.value)
-    const order = {products, total, totalNo, address, paymentMode, user}
-    dispatch(createOrdertAsync(order))
-  }
+  const handleOrder = (e) => {
+    console.log(e.target.value);
+    const order = { products, total, totalNo, address, paymentMode, user, status: 'Pending' };
+    dispatch(createOrdertAsync(order));
+  };
   return (
     <div>
       {!products.length && <Navigate to="/" replace={true}></Navigate>}
@@ -112,9 +119,9 @@ export default function Cart({ barValue }) {
           </p>
           <div className="mt-6">
             {barValue ? (
-              <div 
-              className="cursor-pointer flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-              onClick={handleOrder}
+              <div
+                className="cursor-pointer flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                onClick={handleOrder}
               >
                 Order Now{" "}
               </div>

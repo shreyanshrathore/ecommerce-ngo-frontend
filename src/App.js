@@ -5,6 +5,9 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import Protected from './features/auth/protected';
 import { useDispatch, useSelector } from 'react-redux';
+import PageNotFound from './pages/404'
+import OrderSuccess from './pages/OrderSuccess'
+import UserOrderPage from './pages/UserOrderPage';
 
 import {
   createBrowserRouter,
@@ -19,6 +22,7 @@ import { useEffect } from 'react';
 import { fetchItemsByUserId } from './features/cart/cartAPI';
 import { selectLoggedInUser } from './features/auth/authSlice';
 import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
+import UserProfilePage from './pages/UserProfilePage';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +48,22 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <div><SignupPage/></div>,
+  },
+  {
+    path: "*",
+    element: <div><PageNotFound></PageNotFound></div>,
+  },
+  {
+    path: "/order-success/:id",
+    element: <div><OrderSuccess></OrderSuccess></div>,
+  },
+  {
+    path: "/user/orders",
+    element: <div><UserOrderPage></UserOrderPage></div>,
+  },
+  {
+    path: "/user/profile",
+    element: <div><UserProfilePage></UserProfilePage></div>,
   },
 ]);
 

@@ -40,15 +40,3 @@ export function checkUser(loginInfo) {
 
 
 
-export function updateUser(user) {
-  return new Promise(async (resolve) =>{
-    const response = await fetch('http://localhost:8080/users/' + user.id, {
-      method: "PUT",
-      body: JSON.stringify(user),
-      headers: {"content-type":"application/json"}
-    }) 
-    const data = await response.json()
-    resolve({data})
-  }
-  );
-}
