@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLoggedInUserOrdersAsync, selectUserOrders } from "../userSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
+import { discountedPrice } from "../../../app/constants";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
@@ -12,7 +13,6 @@ export default function UserOrders() {
   }, [dispatch]);
 
   const orders = useSelector(selectUserOrders);
-  console.log(orders)
   return (
     <div>
       {orders.map((order) => (
@@ -28,7 +28,6 @@ export default function UserOrders() {
                 </h3>
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                    {console.log(orders)}
                     {order.products.map((item) => (
                       <li key={item.id} className="flex py-6">
                         <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
@@ -45,7 +44,7 @@ export default function UserOrders() {
                               <h3>
                                 <a href={item.href}>{item.title}</a>
                               </h3>
-                              <p className="ml-4">${item.price}</p>
+                              <p className="ml-4">${discountedPrice(item)}</p>
                             </div>
                             <p className="mt-1 text-sm text-gray-500">
                               {item.brand}
@@ -73,7 +72,7 @@ export default function UserOrders() {
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Subtotal</p>
-                  <p>$ {order.totalAmount}</p>
+                  <p>$ {order.total}</p>
                 </div>
                 <div className="flex justify-between my-2 text-base font-medium text-gray-900">
                   <p>Total Items in Cart</p>
@@ -87,7 +86,6 @@ export default function UserOrders() {
                     <div className="min-w-0 flex-auto">
                       <p className="text-sm font-semibold leading-6 text-gray-900">
                         {order.address.name}
-                        {console.log(order.address)}
                       </p>
                       <p className="mt-1 truncate text-xs leading-5 text-gray-500">
                         {order.address.street}

@@ -2,11 +2,12 @@ import { Link, Navigate } from "react-router-dom";
 import Cart from "../features/cart/cart";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedInUser } from "../features/auth/authSlice";
+import {  updateUserAsync } from "../features/auth/authSlice";
 import { useState } from "react";
 import { createOrdertAsync, selectCurrentOrder,  } from "../features/order/orderSlice";
 import { adressChange, paymentChange, selectItems } from "../features/cart/cartSlice";
-import { selectUserInfo, updateUserAsync } from "../features/user/userSlice";
+import { selectUserInfo } from "../features/user/userSlice";
+
 
 
 function Checkout() {
@@ -38,7 +39,6 @@ function Checkout() {
   const handlePayment = (e) =>{
     setPayment(e.target.value)
     dispatch(paymentChange(e.target.value))
-    console.log(e.target.value)
   }
 
   
@@ -51,7 +51,6 @@ function Checkout() {
             className="bg-white px-5 py-12 mt-12"
             noValidate
             onSubmit={handleSubmit((data) => {
-              console.log(user);
               dispatch(updateUserAsync({...user, addresses: [...user.addresses, data]}))
               reset()
             })}

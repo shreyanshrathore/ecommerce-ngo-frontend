@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { RadioGroup } from '@headlessui/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllProductByIdAsync, selectProductById } from '../productSlice';
-import { addToCartAsync, selectItems } from '../../cart/cartSlice';
+import { fetchAllProductByIdAsync, selectProductById } from '../../product-list/productSlice';
+import { addToCartAsync } from '../../cart/cartSlice';
 import { useParams } from 'react-router-dom';
 import { selectLoggedInUser } from '../../auth/authSlice'; 
 import { discountedPrice } from '../../../app/constants';
@@ -39,25 +39,18 @@ function classNames(...classes) {
 
 // TODO : Loading UI  
 
-export default function ProductDetail() {
+export default function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams();
-  const items = useSelector(selectItems);
   const user = useSelector(selectLoggedInUser)
   const handleCart = (e) =>{
     e.preventDefault()
-    if(items.findIndex((item)=>item.productId === product.id)<0){
-      console.log({items, product})
-      const newItem = {...product, quantity:1, user: user.id, productId: product.id}
-      delete newItem['id']
-      dispatch(addToCartAsync(newItem))
-    }
-    else{
-      console.log("Already Existed!")
-    }
+    const newItem = {...product, quantity:1, user: user.id}
+    delete newItem['id']
+    dispatch(addToCartAsync(newItem))
   }
   useEffect(() => {
     dispatch(fetchAllProductByIdAsync(params.id));
@@ -152,6 +145,9 @@ export default function ProductDetail() {
             {/* Options */}
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
+              <p className="text-3xl tracking-tight text-gray-900">
+               ${product.price}
+              </p>
               <p className="text-3xl tracking-tight text-gray-900">
                ${discountedPrice(product)}
               </p>

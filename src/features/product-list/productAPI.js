@@ -8,6 +8,55 @@ export function fetchAllProducts() {
   );
 }
 
+
+
+export function createProduct(product) {
+  return new Promise(async (resolve) =>{
+    //TODO: we will not hard-code server URL here
+    const response = await fetch('http://localhost:8080/products/',{
+      method: 'POST',
+      body: JSON.stringify(product),
+      headers: {'content-type': 'application/json'}
+    }) 
+    const data = await response.json()
+    resolve({data})
+  }
+  );
+}
+
+
+export function updateProduct(product, ) {
+  return new Promise(async (resolve) =>{
+    //TODO: we will not hard-code server URL here
+    const response = await fetch('http://localhost:8080/products/'+product.id,{
+      method: 'PUT',
+      body: JSON.stringify(product),
+      headers: {'content-type': 'application/json'}
+    }) 
+    const data = await response.json()
+    resolve({data})
+  }
+  );
+}
+
+
+export function deleteProduct(id ) {
+  return new Promise(async (resolve) =>{
+    const response = await fetch('http://localhost:8080/products/'+id , {
+      method: "DELETE",
+      headers: {"content-type":"application/json"}
+    }) 
+    const data = await response.json()
+    resolve({data: {id: id}})
+  }
+  );
+}
+
+
+
+
+
+
 export function fetchProductById(id) {
   return new Promise(async (resolve) =>{
     //TODO: we will not hard-code server URL here
@@ -24,6 +73,9 @@ export function fetchProductsByFilters(filter,sort,pagination) {
   // pagination = {_page:1,_limit=10} 
   // TODO : on server we will support multi values in filter
   let queryString = '';
+  for(let key in pagination){
+    queryString += `${key}=${pagination[key]}&`
+  }
   for(let key in filter){
     const categoryValues = filter[key];
     if(categoryValues.length){
@@ -34,10 +86,7 @@ export function fetchProductsByFilters(filter,sort,pagination) {
   for(let key in sort){
     queryString += `${key}=${sort[key]}&`
   }
-  console.log(pagination)
-  for(let key in pagination){
-    queryString += `${key}=${pagination[key]}&`
-  }
+ 
 
 
   return new Promise(async (resolve) =>{

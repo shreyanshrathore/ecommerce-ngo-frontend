@@ -33,8 +33,7 @@ export default function Signup() {
             noValidate
             className="space-y-6"
             onSubmit={handleSubmit((data) => {
-              dispatch(createUserAsync({email: data.email, password: data.password}))
-              console.log(data);
+              dispatch(createUserAsync({email: data.email, password: data.password, role: ""}))
             })}
           >
             <div>

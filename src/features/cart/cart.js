@@ -13,6 +13,7 @@ import {
 import { Link, Navigate } from "react-router-dom";
 import { createOrdertAsync } from "../order/orderSlice";
 import { selectLoggedInUser } from "../auth/authSlice";
+import { discountedPrice } from "../../app/constants";
 
 export default function Cart({ barValue }) {
   const products = useSelector(selectItems);
@@ -21,13 +22,12 @@ export default function Cart({ barValue }) {
   const paymentMode = useSelector(selectPayment);
   const user = useSelector(selectLoggedInUser);
   const total = products.reduce(
-    (amount, item) => item.price * item.quantity + amount,
+    (amount, item) => discountedPrice(item) * item.quantity + amount,
     0
   );
   const totalNo = products.reduce((total, item) => item.quantity + total, 0);
 
   const handleQuantity = (e, item) => {
-    console.log({ ...item, quantity: +e.target.value });
     dispatch(updateItemAsync({ ...item, quantity: +e.target.value }));
   };
 
@@ -36,7 +36,6 @@ export default function Cart({ barValue }) {
   };
 
   const handleOrder = (e) => {
-    console.log(e.target.value);
     const order = { products, total, totalNo, address, paymentMode, user, status: 'Pending' };
     dispatch(createOrdertAsync(order));
   };
@@ -66,7 +65,7 @@ export default function Cart({ barValue }) {
                         <h3>
                           <p>{product.title}</p>
                         </h3>
-                        <p className="ml-4">$ {product.price}</p>
+                        <p className="ml-4">$ {discountedPrice(product)}</p>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
                         {product.category}

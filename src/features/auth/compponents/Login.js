@@ -8,6 +8,7 @@ import {
 } from '../authSlice';
 import { Link, Navigate } from 'react-router-dom';
 
+
 export default function Login () {
   const dispatch = useDispatch();
   const {
@@ -35,9 +36,8 @@ export default function Login () {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={handleSubmit((data) => {
+          <form className="space-y-6" noValidate onSubmit={handleSubmit((data) => {
               dispatch(checkUserAsync({email: data.email, password: data.password}))
-              console.log(data);
             })}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
@@ -65,9 +65,9 @@ export default function Login () {
                   Password
                 </label>
                 <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                  <Link to ='/forgot-password' className="font-semibold text-indigo-600 hover:text-indigo-500">
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="mt-2">
