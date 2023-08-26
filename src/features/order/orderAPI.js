@@ -36,7 +36,6 @@ export function fetchAllOrders( pagination, sort) {
 for (let key in pagination) {
   queryString += `${key}=${pagination[key]}&`;
 }
-console.log(queryString);
    return new Promise(async (resolve) => {
      //TODO: we will not hard-code server URL here
      const response = await fetch(

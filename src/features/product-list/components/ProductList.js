@@ -426,7 +426,6 @@ function ProductGrid({ products }) {
                       ${product.price}
                     </p>
                   </div>
-                  {console.log(product.stock)}
                 </div>
                 {product.stock<=0 && 
                 <div>

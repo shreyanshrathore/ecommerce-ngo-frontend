@@ -24,6 +24,8 @@ const AdminOrders = () => {
     // console.log('handleShow');
   };
 
+  console.log(orders);
+
   const handleUpdate = (e, order) => {
     const updatedOrder = { ...order, status: e.target.value };
     dispatch(updateItemAsync(updatedOrder));
@@ -35,7 +37,7 @@ const AdminOrders = () => {
   };
   const handleSort = (sortOption) => {
     const sort = { _sort: sortOption.sort, _order: sortOption.order };
-    console.log({ sort });
+    // console.log({ sort });
     setSort(sort);
   };
   const chooseColor = (status) => {

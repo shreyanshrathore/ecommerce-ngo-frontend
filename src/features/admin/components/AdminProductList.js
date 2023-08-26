@@ -1,5 +1,19 @@
-import React, { useState, Fragment, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  FunnelIcon,
+  MinusIcon,
+  PlusIcon,
+  Squares2X2Icon,
+  StarIcon,
+} from "@heroicons/react/20/solid";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 import {
   fetchBrandsAsync,
   fetchCategoriesAsync,
@@ -9,22 +23,6 @@ import {
   selectCategories,
   selectTotalItems,
 } from "../../product-list/productSlice";
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  StarIcon,
-} from "@heroicons/react/20/solid";
-import { Link, useNavigate } from "react-router-dom";
-import {
-  ChevronDownIcon,
-  FunnelIcon,
-  MinusIcon,
-  PlusIcon,
-  Squares2X2Icon,
-} from "@heroicons/react/20/solid";
-import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 
 const sortOptions = [
   { name: "Best Rating", sort: "rating", order: "desc", current: false },

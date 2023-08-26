@@ -33,7 +33,7 @@
         "https://i.dummyjson.com/data/products/4/4.jpg",
         "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
       ],
-      "deleted":false
+      "deleted": false
     },
     {
       "id": 5,
@@ -2457,28 +2457,6 @@
         "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
       ],
       "quantity": 1,
-      "user": 1,
-      "productId": 4,
-      "id": 6
-    },
-    {
-      "title": "OPPOF19",
-      "description": "OPPO F19 is officially announced on April 2021.",
-      "price": 280,
-      "discountPercentage": 17.91,
-      "rating": 4.3,
-      "stock": 123,
-      "brand": "OPPO",
-      "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/4/1.jpg",
-        "https://i.dummyjson.com/data/products/4/2.jpg",
-        "https://i.dummyjson.com/data/products/4/3.jpg",
-        "https://i.dummyjson.com/data/products/4/4.jpg",
-        "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
-      ],
-      "quantity": 1,
       "user": 2,
       "productId": 4,
       "id": 7
@@ -2566,7 +2544,7 @@
           }
         ]
       },
-      "status": "delivered",
+      "status": "dispatched",
       "id": 5
     },
     {
@@ -2630,103 +2608,10 @@
           "pinCode": "460004"
         }
       },
-      "status": "cancelled",
+      "status": "dispatched",
       "id": 8
     },
-    {
-      "products": [
-        {
-          "title": "Fancy hand clutch",
-          "description": "This fashion is designed to add a charming effect to your casual outfit. This Bag is made of synthetic leather.",
-          "price": 44,
-          "discountPercentage": 10.39,
-          "rating": 4.18,
-          "stock": 101,
-          "brand": "Bracelet",
-          "category": "womens-bags",
-          "thumbnail": "https://i.dummyjson.com/data/products/73/thumbnail.jpg",
-          "images": [
-            "https://i.dummyjson.com/data/products/73/1.jpg",
-            "https://i.dummyjson.com/data/products/73/2.webp",
-            "https://i.dummyjson.com/data/products/73/3.jpg",
-            "https://i.dummyjson.com/data/products/73/thumbnail.jpg"
-          ],
-          "quantity": 1,
-          "user": 2,
-          "id": 6
-        }
-      ],
-      "total": 39,
-      "totalNo": 1,
-      "address": [],
-      "paymentMode": null,
-      "user": {
-        "email": "shreyanshi@gmail.com",
-        "password": "Sx1234567",
-        "role": "user",
-        "id": 2,
-        "addresses": [
-          {
-            "name": "shreyansh",
-            "email": "gh@gmail.com",
-            "phone": "6263878588",
-            "street": "Betul Bazar",
-            "city": "Betul",
-            "state": "mp",
-            "pinCode": "460004"
-          }
-        ]
-      },
-      "status": "dispatched",
-      "id": 9
-    },
-    {
-      "products": [
-        {
-          "title": "perfume Oil",
-          "description": "Mega Discount, Impression of Acqua Di Gio by GiorgioArmani concentrated attar perfume Oil",
-          "price": 13,
-          "discountPercentage": 8.4,
-          "rating": 4.26,
-          "stock": 65,
-          "brand": "Impression of Acqua Di Gio",
-          "category": "fragrances",
-          "thumbnail": "https://i.dummyjson.com/data/products/11/thumbnail.jpg",
-          "images": [
-            "https://i.dummyjson.com/data/products/11/1.jpg",
-            "https://i.dummyjson.com/data/products/11/2.jpg",
-            "https://i.dummyjson.com/data/products/11/3.jpg",
-            "https://i.dummyjson.com/data/products/11/thumbnail.jpg"
-          ],
-          "quantity": 1,
-          "user": 2,
-          "id": 6
-        }
-      ],
-      "total": 12,
-      "totalNo": 1,
-      "address": [],
-      "paymentMode": null,
-      "user": {
-        "email": "shreyanshi@gmail.com",
-        "password": "Sx1234567",
-        "role": "user",
-        "id": 2,
-        "addresses": [
-          {
-            "name": "shreyansh",
-            "email": "gh@gmail.com",
-            "phone": "6263878588",
-            "street": "Betul Bazar",
-            "city": "Betul",
-            "state": "mp",
-            "pinCode": "460004"
-          }
-        ]
-      },
-      "status": "Pending",
-      "id": 10
-    },
+
     {
       "products": [
         {
@@ -3058,7 +2943,7 @@
           "pinCode": "460004"
         }
       },
-      "status": "Pending",
+      "status": "cancelled",
       "id": 16
     },
     {
@@ -3202,6 +3087,180 @@
       },
       "status": "Pending",
       "id": 18
+    },
+    {
+      "products": [
+        {
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/4/1.jpg",
+            "https://i.dummyjson.com/data/products/4/2.jpg",
+            "https://i.dummyjson.com/data/products/4/3.jpg",
+            "https://i.dummyjson.com/data/products/4/4.jpg",
+            "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "productId": 4,
+          "id": 6
+        },
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "productId": 8,
+          "id": 9
+        }
+      ],
+      "total": 1576,
+      "totalNo": 2,
+      "address": {
+        "name": "shreyansh rathore",
+        "email": "shreyansh@gmail.com",
+        "phone": "6263878588",
+        "street": "acropolis",
+        "city": "indore",
+        "state": "MP",
+        "pinCode": "452010"
+      },
+      "paymentMode": null,
+      "user": {
+        "email": "shreyansh@gmail.com",
+        "password": "Sx1234567",
+        "role": "user",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "shreyansh rathore",
+            "email": "shreyansh@gmail.com",
+            "phone": "6263878588",
+            "street": "acropolis",
+            "city": "indore",
+            "state": "MP",
+            "pinCode": "452010"
+          }
+        ],
+        "data": {
+          "name": "siya rathore",
+          "email": "shreyansh4rathore@gmail.com",
+          "phone": "6263878588",
+          "street": "Betul Bazar",
+          "city": "Betul",
+          "state": "mp",
+          "pinCode": "460004"
+        }
+      },
+      "status": "Pending",
+      "id": 19
+    },
+    {
+      "products": [
+        {
+          "title": "Samsung Galaxy Book",
+          "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+          "price": 1499,
+          "discountPercentage": 4.15,
+          "rating": 4.25,
+          "stock": 50,
+          "brand": "Samsung",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/7/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/7/1.jpg",
+            "https://i.dummyjson.com/data/products/7/2.jpg",
+            "https://i.dummyjson.com/data/products/7/3.jpg",
+            "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 1,
+          "productId": 7,
+          "id": 9
+        },
+        {
+          "title": "MacBook Pro",
+          "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+          "price": 1740,
+          "discountPercentage": 12,
+          "stock": 83,
+          "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+          "brand": "Apple",
+          "category": "laptops",
+          "images": [
+            "https://i.dummyjson.com/data/products/6/1.png",
+            "https://i.dummyjson.com/data/products/6/2.jpg",
+            "https://i.dummyjson.com/data/products/6/3.png",
+            "https://i.dummyjson.com/data/products/6/thumbnail.png"
+          ],
+          "rating": 0,
+          "quantity": 2,
+          "user": 1,
+          "productId": 6,
+          "id": 10
+        }
+      ],
+      "total": 5936,
+      "totalNo": 4,
+      "address": {
+        "name": "shreyansh rathore",
+        "email": "shreyansh@gmail.com",
+        "phone": "6263878588",
+        "street": "acropolis",
+        "city": "indore",
+        "state": "MP",
+        "pinCode": "452010"
+      },
+      "paymentMode": "cash",
+      "user": {
+        "email": "shreyansh@gmail.com",
+        "password": "Sx1234567",
+        "role": "user",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "shreyansh rathore",
+            "email": "shreyansh@gmail.com",
+            "phone": "6263878588",
+            "street": "acropolis",
+            "city": "indore",
+            "state": "MP",
+            "pinCode": "452010"
+          }
+        ],
+        "data": {
+          "name": "siya rathore",
+          "email": "shreyansh4rathore@gmail.com",
+          "phone": "6263878588",
+          "street": "Betul Bazar",
+          "city": "Betul",
+          "state": "mp",
+          "pinCode": "460004"
+        }
+      },
+      "status": "Pending",
+      "id": 20
     }
   ]
 }

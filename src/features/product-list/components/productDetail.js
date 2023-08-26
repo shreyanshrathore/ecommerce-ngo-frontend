@@ -50,7 +50,6 @@ export default function ProductDetail() {
   const handleCart = (e) =>{
     e.preventDefault()
     if(items.findIndex((item)=>item.productId === product.id)<0){
-      console.log({items, product})
       const newItem = {...product, quantity:1, user: user.id, productId: product.id}
       delete newItem['id']
       dispatch(addToCartAsync(newItem))
