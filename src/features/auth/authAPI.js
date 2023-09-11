@@ -14,6 +14,46 @@ export function createUser(userdata) {
 }
 
 
+
+export function createNGO(userdata) {
+  return new Promise(async (resolve) =>{
+    const response = await fetch('http://localhost:8080/ngo', {
+      method: "POST",
+      body: JSON.stringify(userdata),
+      headers: {"content-type":"application/json"}
+    }) 
+    const data = await response.json()
+    console.log("DONE!!!")
+    resolve({data})
+  }
+  );
+}
+
+export function fetchNGO() {
+  return new Promise(async (resolve) =>{
+    const response = await fetch('http://localhost:8080/ngo') 
+    const data = await response.json()
+    resolve({data})
+  }
+  );
+}
+
+export function deleteNgoRequest(id) {
+  return new Promise(async (resolve) =>{
+    const response = await fetch('http://localhost:8080/ngo/'+ id, {
+      method: "DELETE",
+      headers: {"content-type":"application/json"}
+    }) 
+    const data = await response.json()
+    console.log("DONE!!!")
+  }
+  );
+}
+
+
+
+
+
 export function checkUser(loginInfo) {
   return new Promise(async (resolve, reject) =>{
     const email = loginInfo.email;

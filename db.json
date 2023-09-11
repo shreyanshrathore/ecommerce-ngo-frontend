@@ -2334,6 +2334,19 @@
       "password": "Sx1234567",
       "role": "admin",
       "id": 4
+    },
+    {
+      "email": "testing@gmail.com",
+      "password": "Sxh1234567",
+      "role": "",
+      "id": 5
+    },
+    {
+      "email": "auth@gmail.com",
+      "password": "Acro123456",
+      "role": "",
+      "id": 6,
+      "auth": 1
     }
   ],
   "cart": [
@@ -2611,7 +2624,6 @@
       "status": "dispatched",
       "id": 8
     },
-
     {
       "products": [
         {
@@ -3262,5 +3274,6 @@
       "status": "Pending",
       "id": 20
     }
-  ]
+  ],
+  "ngo": []
 }

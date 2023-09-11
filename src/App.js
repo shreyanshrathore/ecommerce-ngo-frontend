@@ -34,6 +34,9 @@ import AdminProductForm from './features/admin/components/AdminProductForm';
 import NavBar from './features/navbar/Navbar';
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminsOrderPage from './pages/AdminsOrderPage';
+import NgoRegisterPage from './pages/NgoRegisterPage';
+import NgoRegister from './pages/NgoRegisterPage';
+import NGO_request from './features/admin/components/NGORequest';
 
 const router = createBrowserRouter([
   {
@@ -77,6 +80,10 @@ const router = createBrowserRouter([
     element: <div><SignupPage/></div>,
   },
   {
+    path: "/Ngo-Register",
+    element: <div><NgoRegisterPage/></div>,
+  },
+  {
     path: "*",
     element: <div><PageNotFound></PageNotFound></div>,
   },
@@ -103,6 +110,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/orders",
     element: <div><AdminsOrderPage></AdminsOrderPage></div>,
+  },
+  {
+    path: "/admin/ngo_request",
+    element: <div><NGO_request/></div>,
   },
 ]);
 

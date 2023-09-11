@@ -1,39 +1,43 @@
-import React, { useState } from "react";
+import React from "react";
+import ngo from "../../../assets/ngo-nongovernmental-organization-serve-specific-social-template-hand-drawn-illustration_2175-7898.avif";
 import { useSelector, useDispatch } from "react-redux";
-import { createUserAsync, selectLoggedInUser} from "../authSlice";
+import { createUserAsync, selectLoggedInUser } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-export default function Signup() {
+
+const LoginPage = () => {
   const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const user = useSelector(selectLoggedInUser)
+  const user = useSelector(selectLoggedInUser);
 
   return (
     <div>
-      {user&& <Navigate to = '/' replace = {true}></Navigate>}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+      {user && <Navigate to="/" replace={true}></Navigate>}
+      <div className="w-[100vw] h-[100vh] bg-pink-400 flex items-center justify-center">
+        <img
+          className="rounded-3xl h-[600px] ml-32 lg:block hidden mr-96"
+          src={ngo}
+          alt=""
+        />
+        <div className="h-[500px] w-96 bg-pink-200 rounded-3xl lg:absolute right-[10%] flex flex-col justify-center">
+          <p className="text-2xl text-center mt-3 font-bold">
             Create a new Account
-          </h2>
-        </div>
-
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          </p>
           <form
             noValidate
-            className="space-y-6"
+            className="space-y-6 px-5 mt-4"
             onSubmit={handleSubmit((data) => {
-              dispatch(createUserAsync({email: data.email, password: data.password, role: ""}))
+              dispatch(
+                createUserAsync({
+                  email: data.email,
+                  password: data.password,
+                  role: "",
+                })
+              );
             })}
           >
             <div>
@@ -50,13 +54,12 @@ export default function Signup() {
                     required: "Email is Required",
                     pattern: {
                       value: /\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/,
-                      message: "Email is not valids",
+                      message: "Email is not valid",
                     },
                   })}
                   type="email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
-
                 {errors.email && (
                   <p className="text-red-500">{errors.email.message}</p>
                 )}
@@ -78,7 +81,8 @@ export default function Signup() {
                   {...register("password", {
                     required: "Password must be included",
                     pattern: {
-                      value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                      value:
+                        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
                       message: `- at least 8 characters \n
                       - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number \n
                       - Can contain special characters`,
@@ -105,10 +109,12 @@ export default function Signup() {
               <div className="mt-2">
                 <input
                   id="Confirm password"
-                  type = 'password'
+                  type="password"
                   {...register("confirmPassword", {
-                    required: "Confirm you password",
-                    validate: (value, formValues) => value === formValues.password || "Password is not matching"
+                    required: "Confirm your password",
+                    validate: (value, formValues) =>
+                      value === formValues.password ||
+                      "Password is not matching",
                   })}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
@@ -128,16 +134,26 @@ export default function Signup() {
                 Sign up
               </button>
             </div>
-          </form>
 
+
+          </form>
           <p className="mt-10 text-center text-sm text-gray-500">
+            Register a NGO{"   "}
+            <span className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+              <Link to={"/Ngo-Register"}>Regsiter</Link>
+            </span>
+          </p>
+          <p className="mt-4 text-center text-sm text-gray-500">
             Already a member{" "}
             <span className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
               <Link to={"/login"}>Login</Link>
             </span>
           </p>
+
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;

@@ -1,11 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { checkUser, createUser, signOut } from './authAPI';
+import { checkUser, createNGO, createUser, deleteNgoRequest, fetchNGO, signOut } from './authAPI';
 import { updateUser } from '../user/userAPI';
 
 
 const initialState = {
   loggedInUser: null,
   status: 'idle',
+  ngo: [],
   error: null
 };
 
@@ -13,6 +14,32 @@ export const createUserAsync = createAsyncThunk(
   'auth/createUser',
   async (userdata) => {
     const response = await createUser(userdata);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const createNGOAsync = createAsyncThunk(
+  'auth/createNGO',
+  async (userdata) => {
+    const response = await createNGO(userdata);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const deleteNgoRequestAsync = createAsyncThunk(
+  'auth/deleteNgoRequest',
+  async (id) => {
+    const response = await deleteNgoRequest(id);
+    return response.data;
+  }
+);
+
+export const fetchNGOAsync = createAsyncThunk(
+  'auth/fetchNGO',
+  async () => {
+    const response = await fetchNGO();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -91,6 +118,27 @@ export const authSlice = createSlice({
         state.status = 'idle';
         state.loggedInUser = null;
       })
+      .addCase(createNGOAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createNGOAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.ngo = action.payload;
+      })
+      .addCase(fetchNGOAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchNGOAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.ngo = action.payload;
+      })
+      .addCase(deleteNgoRequestAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteNgoRequestAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.ngo = action.payload;
+      })
       
   },
 });
@@ -98,6 +146,7 @@ export const authSlice = createSlice({
 export const { increment } = authSlice.actions;
 
 export const selectLoggedInUser = (state) => state.auth.loggedInUser;
+export const selectNGORequest = (state) => state.auth.ngo;
 export const selectError = (state) => state.auth.error;
 
 export default authSlice.reducer;
