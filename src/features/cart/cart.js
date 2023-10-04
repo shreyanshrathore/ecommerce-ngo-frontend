@@ -28,6 +28,7 @@ export default function Cart({ barValue }) {
   const totalNo = products.reduce((total, item) => item.quantity + total, 0);
 
   const handleQuantity = (e, item) => {
+    // console.log({ ...item, quantity: +e.target.value })
     dispatch(updateItemAsync({ ...item, quantity: +e.target.value }));
   };
 
@@ -42,7 +43,7 @@ export default function Cart({ barValue }) {
   return (
     <div>
       {!products.length && <Navigate to="/" replace={true}></Navigate>}
-      <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto mt-12 bg-[#A7A0FF] max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
             Cart

@@ -2338,15 +2338,47 @@
     {
       "email": "testing@gmail.com",
       "password": "Sxh1234567",
-      "role": "",
+      "role": "user",
       "id": 5
     },
     {
       "email": "auth@gmail.com",
       "password": "Acro123456",
-      "role": "",
+      "role": "owner",
       "id": 6,
       "auth": 1
+    }
+  ],
+  "admin": [
+    {
+      "NGOName": "Acropolis",
+      "About": "Acropolis College's NGO is Great, it is currently developing a new website, for NGO's",
+      "username": "Acropolis userName",
+      "password": "Acropolis123",
+      "email": "acropolis@gmail.com",
+      "contact": "6263878588",
+      "adress": "04 suman nagar, vijay nagar, indore",
+      "city": "Indore",
+      "state": "Madhya Pradesh",
+      "zip": "452010",
+      "payment": "Cash + Card",
+      "id": 2,
+      "role": "admin"
+    },
+    {
+      "NGOName": "sakar ngo ",
+      "About": "sakar ngo is best",
+      "username": "sakar ngo",
+      "password": "Sakar@123",
+      "email": "sakar@gmail.com",
+      "contact": "6263878588",
+      "adress": "04 suman nagar, vijay nagar, indore",
+      "city": "Indore",
+      "state": "Madhya Pradesh",
+      "zip": "452010",
+      "payment": "Cash + Card",
+      "id": 1,
+      "role": "admin"
     }
   ],
   "cart": [
@@ -2494,6 +2526,70 @@
       "user": 2,
       "productId": 7,
       "id": 8
+    },
+    {
+      "title": "OPPOF19",
+      "description": "OPPO F19 is officially announced on April 2021.",
+      "price": 280,
+      "discountPercentage": 17.91,
+      "rating": 4.3,
+      "stock": 123,
+      "brand": "OPPO",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/4/1.jpg",
+        "https://i.dummyjson.com/data/products/4/2.jpg",
+        "https://i.dummyjson.com/data/products/4/3.jpg",
+        "https://i.dummyjson.com/data/products/4/4.jpg",
+        "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+      ],
+      "deleted": false,
+      "quantity": 1,
+      "user": 6,
+      "productId": 4,
+      "id": 9
+    },
+    {
+      "title": "OPPOF19",
+      "description": "OPPO F19 is officially announced on April 2021.",
+      "price": 280,
+      "discountPercentage": 17.91,
+      "rating": 4.3,
+      "stock": 123,
+      "brand": "OPPO",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/4/1.jpg",
+        "https://i.dummyjson.com/data/products/4/2.jpg",
+        "https://i.dummyjson.com/data/products/4/3.jpg",
+        "https://i.dummyjson.com/data/products/4/4.jpg",
+        "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+      ],
+      "deleted": false,
+      "quantity": 1,
+      "user": 1,
+      "productId": 4,
+      "id": 10
+    },
+    {
+      "id": 11
+    },
+    {
+      "id": 12
+    },
+    {
+      "id": 13
+    },
+    {
+      "id": 14
+    },
+    {
+      "id": 15
+    },
+    {
+      "id": 16
     }
   ],
   "orders": [
@@ -2557,7 +2653,7 @@
           }
         ]
       },
-      "status": "dispatched",
+      "status": "delivered",
       "id": 5
     },
     {
@@ -3273,6 +3369,72 @@
       },
       "status": "Pending",
       "id": 20
+    },
+    {
+      "products": [
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 5,
+          "user": 1,
+          "productId": 8,
+          "id": 10
+        }
+      ],
+      "total": 6730,
+      "totalNo": 5,
+      "address": {
+        "name": "shreyansh rathore",
+        "email": "shreyansh@gmail.com",
+        "phone": "6263878588",
+        "street": "acropolis",
+        "city": "indore",
+        "state": "MP",
+        "pinCode": "452010"
+      },
+      "paymentMode": "card",
+      "user": {
+        "email": "shreyansh@gmail.com",
+        "password": "Sx1234567",
+        "role": "user",
+        "id": 1,
+        "addresses": [
+          {
+            "name": "shreyansh rathore",
+            "email": "shreyansh@gmail.com",
+            "phone": "6263878588",
+            "street": "acropolis",
+            "city": "indore",
+            "state": "MP",
+            "pinCode": "452010"
+          }
+        ],
+        "data": {
+          "name": "siya rathore",
+          "email": "shreyansh4rathore@gmail.com",
+          "phone": "6263878588",
+          "street": "Betul Bazar",
+          "city": "Betul",
+          "state": "mp",
+          "pinCode": "460004"
+        }
+      },
+      "status": "Pending",
+      "id": 21
     }
   ],
   "ngo": []

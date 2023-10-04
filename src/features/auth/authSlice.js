@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { checkUser, createNGO, createUser, deleteNgoRequest, fetchNGO, signOut } from './authAPI';
+import { checkUser, createNgoAdmin, createNgoRequest, createUser, deleteNgoRequest, fetchNgoAdmin, fetchNgoRequest, signOut } from './authAPI';
 import { updateUser } from '../user/userAPI';
 
 
 const initialState = {
   loggedInUser: null,
   status: 'idle',
-  ngo: [],
+  ngoreq: [],
+  ngolist: [],
   error: null
 };
 
@@ -19,10 +20,10 @@ export const createUserAsync = createAsyncThunk(
   }
 );
 
-export const createNGOAsync = createAsyncThunk(
-  'auth/createNGO',
+export const createNgoRequestAsync = createAsyncThunk(
+  'auth/createNgoRequest',
   async (userdata) => {
-    const response = await createNGO(userdata);
+    const response = await createNgoRequest(userdata);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -36,14 +37,34 @@ export const deleteNgoRequestAsync = createAsyncThunk(
   }
 );
 
-export const fetchNGOAsync = createAsyncThunk(
-  'auth/fetchNGO',
+export const fetchNgoRequestAsync = createAsyncThunk(
+  'auth/fetchNgoRequest',
   async () => {
-    const response = await fetchNGO();
+    const response = await fetchNgoRequest();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
+
+export const createNgoAdminAsync = createAsyncThunk(
+  'auth/createNgoAdmin',
+  async (userdata) => {
+    const response = await createNgoAdmin(userdata);
+    // The value we return becomes the `fulfilled` action payload
+    // return response.data;
+  }
+);
+
+export const fetchNgoAdminAsync = createAsyncThunk(
+  'auth/fetchNgoAdmin',
+  async () => {
+    const response = await fetchNgoAdmin();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+
 
 
 export const checkUserAsync = createAsyncThunk(
@@ -118,26 +139,40 @@ export const authSlice = createSlice({
         state.status = 'idle';
         state.loggedInUser = null;
       })
-      .addCase(createNGOAsync.pending, (state) => {
+      .addCase(createNgoRequestAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(createNGOAsync.fulfilled, (state, action) => {
+      .addCase(createNgoRequestAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.ngo = action.payload;
+        state.ngoreq = action.payload;
       })
-      .addCase(fetchNGOAsync.pending, (state) => {
+      .addCase(fetchNgoRequestAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchNGOAsync.fulfilled, (state, action) => {
+      .addCase(fetchNgoRequestAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.ngo = action.payload;
+        state.ngoreq = action.payload;
       })
       .addCase(deleteNgoRequestAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(deleteNgoRequestAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.ngo = action.payload;
+        state.ngoreq = action.payload;
+      })
+      .addCase(createNgoAdminAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(createNgoAdminAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        // state.ngoreq = action.payload;
+      })
+      .addCase(fetchNgoAdminAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchNgoAdminAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.ngolist = action.payload;
       })
       
   },
@@ -146,7 +181,8 @@ export const authSlice = createSlice({
 export const { increment } = authSlice.actions;
 
 export const selectLoggedInUser = (state) => state.auth.loggedInUser;
-export const selectNGORequest = (state) => state.auth.ngo;
+export const selectNGORequest = (state) => state.auth.ngoreq;
+export const selectNGOList = (state) => state.auth.ngolist;
 export const selectError = (state) => state.auth.error;
 
 export default authSlice.reducer;

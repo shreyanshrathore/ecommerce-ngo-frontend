@@ -21,7 +21,7 @@ const navigation = [
   { name: "Products", link: "/", user: true },
   { name: "Admin Products", link: "/admin", admin: true },
   { name: "Orders", link: "/admin/orders", admin: true },
-  { name: "NGO Request", link: "/admin/NGO", auth: true },
+  { name: "NGO Request", link: "/admin/ngo_request", owner: true },
 ];
 const userNavigation = [
   { name: "My Profile", href: "/user/profile" },
@@ -56,7 +56,6 @@ function NavBar({ children }) {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {console.log(user)}
                         {navigation.map((item) =>
                           item[user.role] ? (
                             <Link
@@ -64,8 +63,8 @@ function NavBar({ children }) {
                               to={item.link}
                               className={classNames(
                                 item.current
-                                  ? "bg-gray-900 text-white"
-                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                  ? "bg-[#A7A0FF] text-white"
+                                  : "text-black bg-[#A7A0FF]  hover:bg-purple-900 hover:text-white",
                                 "rounded-md px-3 py-2 text-sm font-medium"
                               )}
                               aria-current={item.current ? "page" : undefined}
@@ -74,9 +73,9 @@ function NavBar({ children }) {
                             </Link>
                           ) : null
                         )}
-                        {user.auth && <Link to={"admin/ngo_request"}>
+                        {/* {user.auth && <Link to={"admin/ngo_request"}>
                         <button className="text-purple-900 font-bold border-2 p-2 border-white">NGO requests</button>
-                        </Link>}
+                        </Link>} */}
                       </div>
                     </div>
                   </div>
@@ -86,7 +85,6 @@ function NavBar({ children }) {
                         type="button"
                         className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                       >
-                        <span className="sr-only">View notifications</span>
                         <Link to="/cart">
                           <ShoppingCartIcon
                             className="h-6 w-6"

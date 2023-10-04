@@ -27,7 +27,7 @@ export function fetchItemsByUserId(user) {
 
 export function updateItem(cart ) {
   return new Promise(async (resolve) =>{
-    const response = await fetch('http://localhost:8080/orders/'+cart.id , {
+    const response = await fetch('http://localhost:8080/cart/'+cart.id , {
       method: "PUT",
       body: JSON.stringify(cart),
       headers: {"content-type":"application/json"}

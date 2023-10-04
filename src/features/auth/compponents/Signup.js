@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { createUserAsync, selectLoggedInUser } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import FactoryIcon from "@mui/icons-material/Factory";
+import PersonIcon from "@mui/icons-material/Person";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -17,13 +19,13 @@ const LoginPage = () => {
   return (
     <div>
       {user && <Navigate to="/" replace={true}></Navigate>}
-      <div className="w-[100vw] h-[100vh] bg-pink-400 flex items-center justify-center">
+      <div className="w-[100vw] h-[100vh]  flex items-center justify-center">
         <img
           className="rounded-3xl h-[600px] ml-32 lg:block hidden mr-96"
           src={ngo}
           alt=""
         />
-        <div className="h-[500px] w-96 bg-pink-200 rounded-3xl lg:absolute right-[10%] flex flex-col justify-center">
+        <div className="h-auto py-4 w-96 bg-[#C9C2FF] rounded-3xl lg:absolute right-[10%] flex flex-col justify-center">
           <p className="text-2xl text-center mt-3 font-bold">
             Create a new Account
           </p>
@@ -134,22 +136,34 @@ const LoginPage = () => {
                 Sign up
               </button>
             </div>
-
-
           </form>
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Register a NGO{"   "}
-            <span className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              <Link to={"/Ngo-Register"}>Regsiter</Link>
-            </span>
-          </p>
-          <p className="mt-4 text-center text-sm text-gray-500">
-            Already a member{" "}
-            <span className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              <Link to={"/login"}>Login</Link>
-            </span>
-          </p>
+          <div className="flex flex-col  px-4 mt-4">
 
+          <p className="mt-4 text-left text-sm text-gray-500 flex">
+              <div className="bg-blue-200 w-min rounded-full p-1">
+                <PersonIcon />
+              </div>
+              <div className="mt-1 ml-2">
+                Already a member !
+                <span className="font-semibold leading-6 ml-3 text-indigo-600 hover:text-indigo-500">
+                  <Link to={"/login"}>Login</Link>
+                </span>
+              </div>
+            </p>
+
+
+            <p className="mt-4  text-sm text-gray-500 text-left flex">
+              <div className="bg-blue-200 w-min rounded-full p-1 ">
+                <FactoryIcon />
+              </div>
+              <div className="mt-1 ml-2">
+                Register a new NGO
+                <span className="ml-2 font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                  <Link to={"/Ngo-Register"}>Regsiter</Link>
+                </span>
+              </div>
+            </p>
+          </div>
         </div>
       </div>
     </div>

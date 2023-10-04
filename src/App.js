@@ -1,4 +1,3 @@
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
@@ -15,6 +14,7 @@ import {
   RouterProvider,
   Route,
   Link,
+  Routes,
 } from "react-router-dom";
 import Cart from './features/cart/cart';
 import Checkout from './pages/checkout';
@@ -27,16 +27,36 @@ import UserProfilePage from './pages/UserProfilePage';
 import { fetchLoggedInUserAsync } from './features/user/userSlice';
 import LogOut from './features/auth/compponents/LogOut';
 import ForgotPasswordPage from './pages/forgotPasswordPage';
-import AdminHome from './pages/AdminHome' 
 import AdminProductDetailPage from './pages/AdminProductDetailPage'
-import ProductForm from './features/admin/components/AdminProductForm';
-import AdminProductForm from './features/admin/components/AdminProductForm';
-import NavBar from './features/navbar/Navbar';
+// import NavBar from './features/navbar/Navbar';
+import Navbar from './features/adminPanel/components/Navbar'
 import AdminProductFormPage from './pages/AdminProductFormPage';
 import AdminsOrderPage from './pages/AdminsOrderPage';
 import NgoRegisterPage from './pages/NgoRegisterPage';
-import NgoRegister from './pages/NgoRegisterPage';
 import NGO_request from './features/admin/components/NGORequest';
+import ProductInfo from './features/adminPanel/components/2-product/ProductInfo';
+import AdminDashboard from './features/adminPanel/pages/AdminDashboard';
+import AdminProducts from './features/adminPanel/pages/AdminProducts';
+import AdminOrders from './features/adminPanel/pages/AdminOrders';
+import AdminPage from './pages/AdminPanelPage/AdminPage';
+import { fetchAllProductsAsync } from './features/product-list/productSlice';
+
+
+// const AdminRoute = () => (
+//   <div>
+//     <ProtectedAdmin>
+//       <div className="flex">
+//         <Navbar />
+//         <div className="ml-64 w-full">
+//           <Routes>
+//             <Route path="/admin/dashboard" element={<Dashboard />} />
+//             <Route path="/admin/adminOrders" element={<Orders />} />
+//           </Routes>
+//         </div>
+//       </div>
+//     </ProtectedAdmin>
+//   </div>
+// );
 
 const router = createBrowserRouter([
   {
@@ -44,25 +64,37 @@ const router = createBrowserRouter([
     element: <div> <Protected> <Home/></Protected></div>,
   },
   {
-    path: "/admin",
-    element: <div> <ProtectedAdmin> <AdminHome/></ProtectedAdmin></div>,
+    path: "/admin/*",
+    element: <div> <ProtectedAdmin> <AdminPage/> </ProtectedAdmin> </div>,
   },
-  {
-    path: "/admin/product-form",
-    element: <div> <ProtectedAdmin><AdminProductFormPage/></ProtectedAdmin></div>,
-  },
-  {
-    path: "/admin/product-form/edit/:id",
-    element: <div> <ProtectedAdmin> <AdminProductFormPage/></ProtectedAdmin></div>,
-  },
-  {
-    path: "/product-detail/:id",
-    element: <div><Protected><ProductDetailPage/></Protected></div>,
-  },
-  {
-    path: "admin/product-detail/:id",
-    element: <div><ProtectedAdmin><AdminProductDetailPage/></ProtectedAdmin></div>,
-  },
+  // {
+  //   path: "/admin/products",
+  //   element: <div> <ProtectedAdmin> <AdminProducts/></ProtectedAdmin></div>,
+  // },
+  // {
+  //   path: "/admin/orders",
+  //   element: <div> <ProtectedAdmin> <AdminOrders/></ProtectedAdmin></div>,
+  // },
+  // {
+  //   path: "/admin/product",
+  //   element: <div> <ProtectedAdmin><Navbar><ProductInfo/></Navbar></ProtectedAdmin></div>,
+  // },
+  // {
+  //   path: "/admin/product-form",
+  //   element: <div> <ProtectedAdmin><AdminProductFormPage/></ProtectedAdmin></div>,
+  // },
+  // {
+  //   path: "/admin/product-form/edit/:id",
+  //   element: <div> <ProtectedAdmin> <AdminProductFormPage/></ProtectedAdmin></div>,
+  // },
+  // {
+  //   path: "/product-detail/:id",
+  //   element: <div><Protected><ProductDetailPage/></Protected></div>,
+  // },
+  // {
+  //   path: "admin/product-detail/:id",
+  //   element: <div><ProtectedAdmin><AdminProductDetailPage/></ProtectedAdmin></div>,
+  // },
   {
     path: "/checkout",
     element: <div><Protected><Checkout/></Protected></div>,
@@ -125,6 +157,7 @@ function App() {
     if(user){
       dispatch(fetchItemsByUserIdAsync(user.id))
       dispatch(fetchLoggedInUserAsync(user.id))
+      // dispatch(fetchAllProductsAsync())
     }
   },[dispatch, user])
   return (
