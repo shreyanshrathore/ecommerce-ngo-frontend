@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { selectLoggedInUser } from '../features/auth/authSlice';
 import { resetCartAsync } from "../features/cart/cartSlice";
 import { resetCart } from "../features/order/orderSlice";
 const OrderSuccess = () => {
   const dispatch = useDispatch()
   const Params = useParams();
-  const user = useSelector(selectLoggedInUser)
 
   useEffect(()=>{
-    dispatch(resetCartAsync(user.id));
+    dispatch(resetCartAsync());
     dispatch(resetCart());
-  },[dispatch, user])
+  },[dispatch])
   return (
     <>{!Params.id && <Navigate to = '/' history = {true}></Navigate>}
       <main class="grid h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">

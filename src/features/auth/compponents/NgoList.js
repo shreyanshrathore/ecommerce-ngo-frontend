@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchNgoAdminAsync, selectNGOList } from "../authSlice";
+import { createNgoAdminAsync, deleteNgoRequestAsync, fetchNgoAdminAsync, selectNGOList } from "../../owner/ownerslice";
 import {
   PencilIcon,
   EyeIcon,
@@ -23,32 +23,32 @@ const NgoList = () => {
         <>
           {/* component */}
           <div className="overflow-x-auto">
-            <div className="  flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+            <div className="flex items-center justify-center overflow-hidden font-sans bg-gray-100 ">
               <div className="w-full lg:w-5/6">
-                <div className="bg-white shadow-md rounded my-6">
-                  <table className=" w-full table-auto">
+                <div className="my-6 bg-white rounded shadow-md">
+                  <table className="w-full table-auto ">
                     <thead>
-                      <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th className="py-3 px-6 text-center">Serial Num.</th>
-                        <th className="py-3 px-6 text-center">NGO Name</th>
-                        <th className="py-3 px-6 text-center">Admin Name</th>
-                        <th className="py-3 px-6 text-left">View </th>
+                      <tr className="text-sm leading-normal text-gray-600 uppercase bg-gray-200">
+                        <th className="px-6 py-3 text-center">Serial Num.</th>
+                        <th className="px-6 py-3 text-center">NGO Name</th>
+                        <th className="px-6 py-3 text-center">Admin Name</th>
+                        <th className="px-6 py-3 text-left">View </th>
                       </tr>
                     </thead>
-                    <tbody className="text-gray-600 text-sm font-light">
+                    <tbody className="text-sm font-light text-gray-600">
                       {adminList.map((admin, index) => (
                         <tr className="border-b border-gray-200 hover:bg-gray-100">
-                          <td className="py-3 px-6 text-center">{index+1  }</td>
+                          <td className="px-6 py-3 text-center">{index+1  }</td>
 
-                          <td className="py-3 px-6 text-center">
+                          <td className="px-6 py-3 text-center">
                             {admin.NGOName}
                           </td>
 
-                          <td className="py-3 px-6 text-center">
+                          <td className="px-6 py-3 text-center">
                             {admin.NGOName}
                           </td>
 
-                          <td className="py-3 px-6 text-center">
+                          <td className="px-6 py-3 text-center">
                             <div className="w-6">
                               <EyeIcon onClick={()=>setState(true)}/>
                             </div>
@@ -93,28 +93,28 @@ const RequestPage = ({ state, setState, ans }) => {
       ></div>
       <div className="flex items-center min-h-screen px-4 py-8">
         <div className="relative w-full  max-w-6xl p-4 mx-auto bg-white rounded-md h-[90vh] shadow-lg">
-          <div className="container mx-auto my-5 p-5">
+          <div className="container p-5 mx-auto my-5">
             <div className="md:flex no-wrap md:-mx-2">
               <div className="w-full md:w-3/12 md:mx-2">
-                <div className="bg-white p-3 border-t-4 border-green-400">
-                  <div className="image overflow-hidden">
+                <div className="p-3 bg-white border-t-4 border-green-400">
+                  <div className="overflow-hidden image">
                     <img
-                      className="h-auto w-full mx-auto"
+                      className="w-full h-auto mx-auto"
                       src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
                       alt=""
                     />
                   </div>
-                  <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
+                  <h1 className="my-1 text-xl font-bold leading-8 text-gray-900">
                     {ans.NGOName}
                   </h1>
-                  <p className="text-sm text-gray-500 hover:text-gray-600 leading-6 h-4">
+                  <p className="h-4 text-sm leading-6 text-gray-500 hover:text-gray-600">
                     {ans.About}
                   </p>
-                  <ul className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                  <ul className="px-3 py-2 mt-3 text-gray-600 bg-gray-100 divide-y rounded shadow-sm hover:text-gray-700 hover:shadow">
                     <li className="flex items-center py-3">
                       <span>Status</span>
                       <span className="ml-auto">
-                        <span className="bg-green-500 py-1 px-2 rounded text-white text-sm">
+                        <span className="px-2 py-1 text-sm text-white bg-green-500 rounded">
                           Active
                         </span>
                       </span>
@@ -127,9 +127,9 @@ const RequestPage = ({ state, setState, ans }) => {
                 </div>
                 <div className="my-4"></div>
               </div>
-              <div className="w-full md:w-9/12 mx-2 h-64">
-                <div className="bg-white p-3 shadow-sm rounded-sm">
-                  <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+              <div className="w-full h-64 mx-2 md:w-9/12">
+                <div className="p-3 bg-white rounded-sm shadow-sm">
+                  <div className="flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                     <span clas="text-green-500">
                       <svg
                         className="h-5"
@@ -149,7 +149,7 @@ const RequestPage = ({ state, setState, ans }) => {
                     <span className="tracking-wide">About</span>
                   </div>
                   <div className="text-gray-700">
-                    <div className="grid md:grid-cols-2 text-sm">
+                    <div className="grid text-sm md:grid-cols-2">
                       <div className="grid grid-cols-2">
                         <div className="px-4 py-2 font-semibold">Name -</div>
                         <div className="px-4 py-2">{ans.NGOName}</div>
@@ -206,10 +206,10 @@ const RequestPage = ({ state, setState, ans }) => {
                   </div>
                 </div>
                 <div className="my-4"></div>
-                <div className="bg-white p-3 shadow-sm rounded-sm">
+                <div className="p-3 bg-white rounded-sm shadow-sm">
                   <div className="grid grid-cols-2">
                     <div>
-                      <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                      <div className="flex items-center mb-3 space-x-2 font-semibold leading-8 text-gray-900">
                         <span className="text-green-500">
                           <svg
                             className="h-5"
@@ -228,12 +228,12 @@ const RequestPage = ({ state, setState, ans }) => {
                         </span>
                         <span className="tracking-wide">Experience</span>
                       </div>
-                      <ul className="list-inside space-y-2">
+                      <ul className="space-y-2 list-inside">
                         <li>
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -241,7 +241,7 @@ const RequestPage = ({ state, setState, ans }) => {
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -249,7 +249,7 @@ const RequestPage = ({ state, setState, ans }) => {
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -257,14 +257,14 @@ const RequestPage = ({ state, setState, ans }) => {
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
                       </ul>
                     </div>
                     <div>
-                      <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                      <div className="flex items-center mb-3 space-x-2 font-semibold leading-8 text-gray-900">
                         <span className="text-green-500">
                           <svg
                             className="h-5"
@@ -288,12 +288,12 @@ const RequestPage = ({ state, setState, ans }) => {
                         </span>
                         <span className="tracking-wide">Education</span>
                       </div>
-                      <ul className="list-inside space-y-2">
+                      <ul className="space-y-2 list-inside">
                         <li>
                           <div className="text-teal-600">
                             Masters Degree in Oxford
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -301,7 +301,7 @@ const RequestPage = ({ state, setState, ans }) => {
                           <div className="text-teal-600">
                             Bachelors Degree in LPU
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -309,21 +309,21 @@ const RequestPage = ({ state, setState, ans }) => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute right-4 flex gap-8 mt-20">
+                <div className="absolute flex gap-8 mt-20 right-4">
                   <button
-                    className="bg-yellow-300 text-xl px-3 py-1 rounded-lg hover:bg-yellow-200"
+                    className="px-3 py-1 text-xl bg-yellow-300 rounded-lg hover:bg-yellow-200"
                     onClick={() => setState(false)}
                   >
                     Cancel
                   </button>
                   <button
-                    className="bg-red-500 text-xl px-3 py-1 rounded-lg hover:bg-red-300"
+                    className="px-3 py-1 text-xl bg-red-500 rounded-lg hover:bg-red-300"
                     onClick={() => dispatch(deleteNgoRequestAsync(ans.id))}
                   >
                     Reject
                   </button>
                   <button
-                    className="bg-green-400 text-xl px-3 py-1 rounded-lg hover:bg-green-500"
+                    className="px-3 py-1 text-xl bg-green-400 rounded-lg hover:bg-green-500"
                     onClick={() => handleit()}
                   >
                     Accept

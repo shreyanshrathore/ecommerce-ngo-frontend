@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllProductByIdAsync, selectProductById } from '../../product-list/productSlice';
 import { addToCartAsync } from '../../cart/cartSlice';
 import { useParams } from 'react-router-dom';
-import { selectLoggedInUser } from '../../auth/authSlice'; 
 import { discountedPrice } from '../../../app/constants';
 
 // TODO: In server data we will add colors, sizes , highlights. to each product
@@ -45,10 +44,9 @@ export default function AdminProductDetail() {
   const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams();
-  const user = useSelector(selectLoggedInUser)
   const handleCart = (e) =>{
     e.preventDefault()
-    const newItem = {...product, quantity:1, user: user.id}
+    const newItem = {...product, quantity:1}
     delete newItem['id']
     dispatch(addToCartAsync(newItem))
   }
@@ -63,7 +61,7 @@ export default function AdminProductDetail() {
           <nav aria-label="Breadcrumb">
             <ol
               role="list"
-              className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
+              className="flex items-center max-w-2xl px-4 mx-auto space-x-2 sm:px-6 lg:max-w-7xl lg:px-8"
             >
               {product.breadcrumbs &&
                 product.breadcrumbs.map((breadcrumb) => (
@@ -81,7 +79,7 @@ export default function AdminProductDetail() {
                         viewBox="0 0 16 20"
                         fill="currentColor"
                         aria-hidden="true"
-                        className="h-5 w-4 text-gray-300"
+                        className="w-4 h-5 text-gray-300"
                       >
                         <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                       </svg>
@@ -101,27 +99,27 @@ export default function AdminProductDetail() {
           </nav>
 
           {/* Image gallery */}
-          <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
-            <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+          <div className="max-w-2xl mx-auto mt-6 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
+            <div className="hidden overflow-hidden rounded-lg aspect-h-4 aspect-w-3 lg:block">
               <img
                 src={product.images[0]}
                 alt={product.title}
-                className="h-full w-full object-cover object-center"
+                className="object-cover object-center w-full h-full"
               />
             </div>
             <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+              <div className="overflow-hidden rounded-lg aspect-h-2 aspect-w-3">
                 <img
                   src={product.images[1]}
                   alt={product.title}
-                  className="h-full w-full object-cover object-center"
+                  className="object-cover object-center w-full h-full"
                 />
               </div>
-              <div className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
+              <div className="overflow-hidden rounded-lg aspect-h-2 aspect-w-3">
                 <img
                   src={product.images[2]}
                   alt={product.title}
-                  className="h-full w-full object-cover object-center"
+                  className="object-cover object-center w-full h-full"
                 />
               </div>
             </div>
@@ -129,7 +127,7 @@ export default function AdminProductDetail() {
               <img
                 src={product.images[3]}
                 alt={product.title}
-                className="h-full w-full object-cover object-center"
+                className="object-cover object-center w-full h-full"
               />
             </div>
           </div>
@@ -272,10 +270,10 @@ export default function AdminProductDetail() {
                               ) : (
                                 <span
                                   aria-hidden="true"
-                                  className="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200"
+                                  className="absolute border-2 border-gray-200 rounded-md pointer-events-none -inset-px"
                                 >
                                   <svg
-                                    className="absolute inset-0 h-full w-full stroke-2 text-gray-200"
+                                    className="absolute inset-0 w-full h-full text-gray-200 stroke-2"
                                     viewBox="0 0 100 100"
                                     preserveAspectRatio="none"
                                     stroke="currentColor"
@@ -301,7 +299,7 @@ export default function AdminProductDetail() {
                 <button
                   type="submit"
                   onClick = {handleCart}
-                  className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="flex items-center justify-center w-full px-8 py-3 mt-10 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
                   Add to Cart
                 </button>
@@ -326,7 +324,7 @@ export default function AdminProductDetail() {
                 </h3>
 
                 <div className="mt-4">
-                  <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                  <ul role="list" className="pl-4 space-y-2 text-sm list-disc">
                     {highlights.map((highlight) => (
                         <li key={highlight} className="text-gray-400">
                           <span className="text-gray-600">{highlight}</span>

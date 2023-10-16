@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { addToCart, deleteItem, fetchItemsByUserId, resetCart, updateCart, updateItem } from './cartAPI';
+import { addToCart, deleteItem, fetchItemsByUserId, resetCart, updateCart } from './cartAPI';
 
 const initialState = {
   items: [],
@@ -20,7 +20,7 @@ export const addToCartAsync = createAsyncThunk(
 export const fetchItemsByUserIdAsync = createAsyncThunk(
   'cart/fetchItemsByUserId',
   async (user) => {
-    const response = await fetchItemsByUserId(user);
+    const response = await fetchItemsByUserId();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -28,18 +28,18 @@ export const fetchItemsByUserIdAsync = createAsyncThunk(
 
 
 
-export const updateItemAsync = createAsyncThunk(
-  'cart/updateItem',
+export const updateCartAsync = createAsyncThunk(
+  'cart/updateCart',
   async (update) => {
-    const response = await updateItem(update);
+    const response = await updateCart(update);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
 
-export const deleteItemAsync = createAsyncThunk(
-  'cart/deleteItem',
+export const deleteItemFromCartAsync = createAsyncThunk(
+  'cart/deleteItemFromCar',
   async (id) => {
     const response = await deleteItem(id);
     // The value we return becomes the `fulfilled` action payload
@@ -50,8 +50,8 @@ export const deleteItemAsync = createAsyncThunk(
 
 export const resetCartAsync = createAsyncThunk(
   'cart/resetCart',
-  async (userId) => {
-    const response = await resetCart(userId);
+  async () => {
+    const response = await resetCart();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -90,18 +90,18 @@ export const cartSlice = createSlice({
         state.status = 'idle';
         state.items = action.payload;
       })
-      .addCase(updateItemAsync.pending, (state) => {
+      .addCase(updateCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(updateItemAsync.fulfilled, (state, action) => {
+      .addCase(updateCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         const index = state.items.findIndex((item)=>item.id === action.payload.id)
         state.items[index] = action.payload;
       })
-      .addCase(deleteItemAsync.pending, (state) => {
+      .addCase(deleteItemFromCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(deleteItemAsync.fulfilled, (state, action) => {
+      .addCase(deleteItemFromCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         const index = state.items.findIndex((item)=>item.id === action.payload.id)
         state.items.splice(index,1)

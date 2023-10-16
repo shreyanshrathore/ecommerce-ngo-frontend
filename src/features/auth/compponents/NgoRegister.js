@@ -2,7 +2,7 @@ import React from "react";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { createNgoRequestAsync } from "../authSlice";
+import { createNgoRequestAsync } from "../../owner/ownerslice";
 
 const Ngoregister = () => {
   const dispatch = useDispatch();

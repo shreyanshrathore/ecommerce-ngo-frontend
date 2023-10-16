@@ -47,7 +47,7 @@ import { fetchAllProductsAsync } from './features/product-list/productSlice';
 //     <ProtectedAdmin>
 //       <div className="flex">
 //         <Navbar />
-//         <div className="ml-64 w-full">
+//         <div className="w-full ml-64">
 //           <Routes>
 //             <Route path="/admin/dashboard" element={<Dashboard />} />
 //             <Route path="/admin/adminOrders" element={<Orders />} />
@@ -87,14 +87,14 @@ const router = createBrowserRouter([
   //   path: "/admin/product-form/edit/:id",
   //   element: <div> <ProtectedAdmin> <AdminProductFormPage/></ProtectedAdmin></div>,
   // },
-  // {
-  //   path: "/product-detail/:id",
-  //   element: <div><Protected><ProductDetailPage/></Protected></div>,
-  // },
-  // {
-  //   path: "admin/product-detail/:id",
-  //   element: <div><ProtectedAdmin><AdminProductDetailPage/></ProtectedAdmin></div>,
-  // },
+  {
+    path: "/product-detail/:id",
+    element: <div><Protected><ProductDetailPage/></Protected></div>,
+  },
+  {
+    path: "admin/product-detail/:id",
+    element: <div><ProtectedAdmin><AdminProductDetailPage/></ProtectedAdmin></div>,
+  },
   {
     path: "/checkout",
     element: <div><Protected><Checkout/></Protected></div>,
@@ -155,8 +155,8 @@ function App() {
   const user = useSelector(selectLoggedInUser)
   useEffect(()=>{
     if(user){
-      dispatch(fetchItemsByUserIdAsync(user.id))
-      dispatch(fetchLoggedInUserAsync(user.id))
+      dispatch(fetchItemsByUserIdAsync())
+      dispatch(fetchLoggedInUserAsync())
       // dispatch(fetchAllProductsAsync())
     }
   },[dispatch, user])

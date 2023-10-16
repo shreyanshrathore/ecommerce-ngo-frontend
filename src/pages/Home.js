@@ -3,15 +3,18 @@ import ProductList from "../features/product-list/components/ProductList";
 import { selectLoggedInUser } from "../features/auth/authSlice";
 import NgoList from "../features/auth/compponents/NgoList";
 import { useSelector } from "react-redux";
+import { selectUserInfo } from "../features/user/userSlice";
 
 function Home() {
   const admins = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo)
   return (
     <div>
-      {console.log(admins)}
+      {console.log(user)}
+      {/* {console.log(admins)} */}
       <NavBar>
         <div>
-          {admins.role === "owner" ? (
+          {user &&  user.role === "owner" ? (
             <div>
               <NgoList />
             </div>

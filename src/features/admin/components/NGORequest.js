@@ -5,9 +5,9 @@ import {
   createNgoAdminAsync,
   deleteNgoRequestAsync,
   fetchNgoRequestAsync,
-  selectLoggedInUser,
   selectNGORequest,
-} from "../../auth/authSlice";
+} from "../../owner/ownerslice";
+
 import {
   Card,
   CardHeader,
@@ -19,6 +19,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { createNgoAdmin } from "../../auth/authAPI";
+import { selectLoggedInUser } from "../../auth/authSlice";
 
 const NGO_request = () => {
   const dispatch = useDispatch();

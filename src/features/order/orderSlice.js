@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { createOrder, fetchAllOrders, fetchCount } from './orderAPI';
-import { updateItem } from '../cart/cartAPI';
+import { updateCart } from '../cart/cartAPI';
 
 const initialState = {
   orders: [],
@@ -9,7 +9,7 @@ const initialState = {
   totalOrders: 0
 };
 
-export const createOrdertAsync = createAsyncThunk(
+export const createOrderAsync = createAsyncThunk(
   'order/createOrder',
   async (pagination) => {
     const response = await createOrder(pagination);
@@ -19,10 +19,10 @@ export const createOrdertAsync = createAsyncThunk(
 );
 
 
-export const updateItemAsync = createAsyncThunk(
-  'order/updateItem',
+export const updateCartAsync = createAsyncThunk(
+  'order/updateCart',
   async (pagination) => {
-    const response = await updateItem(pagination);
+    const response = await updateCart(pagination);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -47,10 +47,10 @@ export const orderSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createOrdertAsync.pending, (state) => {
+      .addCase(createOrderAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(createOrdertAsync.fulfilled, (state, action) => {
+      .addCase(createOrderAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.orders.push(action.payload);
         state.currentOrder = action.payload
@@ -63,10 +63,10 @@ export const orderSlice = createSlice({
         state.orders = action.payload.orders;
         state.totalOrders = action.payload.totalOrders
       })
-      .addCase(updateItemAsync.pending, (state) => {
+      .addCase(updateCartAsync.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(updateItemAsync.fulfilled, (state, action) => {
+      .addCase(updateCartAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         const index = state.orders.findIndex((item)=>item.id === action.payload.id)
         state.orders[index] = action.payload;

@@ -5,6 +5,7 @@ import cartReducer from '../features/cart/cartSlice'
 import orderReducer from '../features/order/orderSlice'
 import userReducer from '../features/user/userSlice'
 import adminReducer from '../features/adminPanel/Redux/AdminSlice'
+import ownerReducer from '../features/owner/ownerslice'
 export const store = configureStore({
   reducer: {
     product: productReducer,
@@ -12,6 +13,7 @@ export const store = configureStore({
     cart: cartReducer,
     order: orderReducer,
     user: userReducer,
-    admin: adminReducer
+    admin: adminReducer,
+    owner: ownerReducer
   },
 });

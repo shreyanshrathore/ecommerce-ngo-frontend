@@ -3,7 +3,7 @@ import {
   fetchAllOrdersAsync,
   selectOrders,
   selectTotalOrder,
-  updateItemAsync,
+  updateCartAsync,
 } from "../../order/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
@@ -28,7 +28,7 @@ const AdminOrders = () => {
 
   const handleUpdate = (e, order) => {
     const updatedOrder = { ...order, status: e.target.value };
-    dispatch(updateItemAsync(updatedOrder));
+    dispatch(updateCartAsync(updatedOrder));
     setEditableOrderId(-1);
   };
 
@@ -64,16 +64,16 @@ const AdminOrders = () => {
       <>
         {/* component */}
         <div className="overflow-x-auto">
-          <div className="  flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+          <div className="flex items-center justify-center overflow-hidden font-sans bg-gray-100 ">
             <div className="w-full lg:w-5/6">
-              <div className="bg-white shadow-md rounded my-6">
-                <table className=" w-full table-auto">
+              <div className="my-6 bg-white rounded shadow-md">
+                <table className="w-full table-auto ">
                   <thead>
-                    <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                      <th className="py-3 px-6 text-left">Order Number</th>
-                      <th className="py-3 px-6 text-left">Items</th>
+                    <tr className="text-sm leading-normal text-gray-600 uppercase bg-gray-200">
+                      <th className="px-6 py-3 text-left">Order Number</th>
+                      <th className="px-6 py-3 text-left">Items</th>
                       <th
-                        className="py-3 px-6 text-center"
+                        className="px-6 py-3 text-center"
                         onClick={(e) =>
                           handleSort({
                             sort: "total",
@@ -84,28 +84,28 @@ const AdminOrders = () => {
                         Total Amount
                         {sort._sort === 'totalAmount' &&
                       (sort._order === 'asc' ? (
-                        <ArrowUpIcon className="w-4 h-4 inline"></ArrowUpIcon>
+                        <ArrowUpIcon className="inline w-4 h-4"></ArrowUpIcon>
                       ) : (
-                        <ArrowDownIcon className="w-4 h-4 inline"></ArrowDownIcon>
+                        <ArrowDownIcon className="inline w-4 h-4"></ArrowDownIcon>
                       ))}
                       </th>
-                      <th className="py-3 px-6 text-center">
+                      <th className="px-6 py-3 text-center">
                         Shipping Address
                       </th>
-                      <th className="py-3 px-6 text-center">Status</th>
-                      <th className="py-3 px-6 text-center">Actions</th>
+                      <th className="px-6 py-3 text-center">Status</th>
+                      <th className="px-6 py-3 text-center">Actions</th>
                     </tr>
                   </thead>
-                  <tbody className="text-gray-600 text-sm font-light">
+                  <tbody className="text-sm font-light text-gray-600">
                     {orders.map((order) => (
                       <tr className="border-b border-gray-200 hover:bg-gray-100">
-                        <td className="py-3 px-6 text-left whitespace-nowrap">
+                        <td className="px-6 py-3 text-left whitespace-nowrap">
                           <div className="flex items-center">
                             <div className="mr-2"></div>
                             <span className="font-medium">{order.id}</span>
                           </div>
                         </td>
-                        <td className="py-3 px-6 text-left">
+                        <td className="px-6 py-3 text-left">
                           {order.products.map((item) => (
                             <div className="flex items-center">
                               <div className="mr-2">
@@ -122,13 +122,13 @@ const AdminOrders = () => {
                             </div>
                           ))}
                         </td>
-                        <td className="py-3 px-6 text-center">
+                        <td className="px-6 py-3 text-center">
                           <div className="flex items-center justify-center">
                             ${order.total}
                           </div>
                         </td>
-                        <td className="py-3 px-6 text-center">
-                          <div className=" items-center justify-center">
+                        <td className="px-6 py-3 text-center">
+                          <div className="items-center justify-center ">
                             <div>{order.address.name}</div>
                             <div>{order.address.email}</div>
                             <div>{order.address.phone}</div>
@@ -138,7 +138,7 @@ const AdminOrders = () => {
                             <div>{order.address.pinCode}</div>
                           </div>
                         </td>
-                        <td className="py-3 px-6 text-center">
+                        <td className="px-6 py-3 text-center">
                           {order.id !== editableOrderId ? (
                             <span
                               className={`${chooseColor(
@@ -156,8 +156,8 @@ const AdminOrders = () => {
                             </select>
                           )}
                         </td>
-                        <td className="py-3 px-6 text-center">
-                          <div className="flex item-center justify-center">
+                        <td className="px-6 py-3 text-center">
+                          <div className="flex justify-center item-center">
                             <div
                               onClick={(e) => handleShow(order)}
                               className="w-6 mr-2 transform hover:text-purple-500 hover:scale-110"
