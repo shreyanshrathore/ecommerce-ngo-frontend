@@ -6,7 +6,7 @@ import {
   deleteNgoRequestAsync,
   fetchNgoRequestAsync,
   selectNGORequest,
-} from "../../owner/ownerslice";
+} from "../ownerslice";
 
 import {
   Card,
@@ -19,7 +19,7 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import { createNgoAdmin } from "../../auth/authAPI";
-import { selectLoggedInUser } from "../../auth/authSlice";
+import { createUserAsync, selectLoggedInUser } from "../../auth/authSlice";
 
 const NGO_request = () => {
   const dispatch = useDispatch();
@@ -37,26 +37,26 @@ const NGO_request = () => {
   return (
     <div>
       {ans.length ? (
-        <div className="p-4 flex gap-6 flex-wrap">
+        <div className="flex flex-wrap gap-6 p-4">
           {ans.map((ans, index) => (
             <div className="flex-shrink-0">
               <Card className="w-full max-w-[21rem] shadow-lg p-4 rounded-xl bg-purple-300">
-                <div className="text-xl font-semibold text-purple-900 hover:text-purple-600 cursor-pointer">
+                <div className="text-xl font-semibold text-purple-900 cursor-pointer hover:text-purple-600">
                   Request No. - #{index + 1}
                 </div>
 
                 <CardHeader floated={false} color="blue-gray">
                   <img src={ngoImage} alt="ui/ux review check" />
-                  <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
+                  <div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
                 </CardHeader>
                 <CardBody>
-                  <div className="mb-3 flex items-center justify-between">
+                  <div className="flex items-center justify-between mb-3">
                     <Typography
                       variant="h5"
                       color="blue-gray"
                       className="font-medium"
                     >
-                      {ans.NGOName}
+                      {ans.ngo_name}
                     </Typography>
                     <Typography
                       color="blue-gray"
@@ -64,18 +64,18 @@ const NGO_request = () => {
                     ></Typography>
                   </div>
                   <Typography color="gray">
-                    {ans.About.split(" ").slice(0, 5).join(" ")}
-                    {ans.About.split(" ").length > 10 ? "..." : ""}
+                    {ans.about.split(" ").slice(0, 5).join(" ")}
+                    {ans.about.split(" ").length > 10 ? "..." : ""}
                   </Typography>
 
-                  <div className="group mt-8 inline-flex flex-wrap items-center gap-3">
+                  <div className="inline-flex flex-wrap items-center gap-3 mt-8 group">
                     <Tooltip content={`${ans.payment}`}>
                       <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                         >
                           <path d="M12 7.5a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" />
                           <path
@@ -87,13 +87,13 @@ const NGO_request = () => {
                         </svg>
                       </span>
                     </Tooltip>
-                    <Tooltip content="Free wifi">
+                    {/* <Tooltip content="Free wifi">
                       <span className="cursor-pointer rounded-full border border-gray-900/5 bg-gray-900/5 p-3 text-gray-900 transition-colors hover:border-gray-900/10 hover:bg-gray-900/10 hover:!opacity-100 group-hover:opacity-70">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                         >
                           <path
                             fillRule="evenodd"
@@ -109,7 +109,7 @@ const NGO_request = () => {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                         >
                           <path d="M11.47 3.84a.75.75 0 011.06 0l8.69 8.69a.75.75 0 101.06-1.06l-8.689-8.69a2.25 2.25 0 00-3.182 0l-8.69 8.69a.75.75 0 001.061 1.06l8.69-8.69z" />
                           <path d="M12 5.432l8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 01-.75-.75v-4.5a.75.75 0 00-.75-.75h-3a.75.75 0 00-.75.75V21a.75.75 0 01-.75.75H5.625a1.875 1.875 0 01-1.875-1.875v-6.198a2.29 2.29 0 00.091-.086L12 5.43z" />
@@ -122,7 +122,7 @@ const NGO_request = () => {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                         >
                           <path d="M19.5 6h-15v9h15V6z" />
                           <path
@@ -139,7 +139,7 @@ const NGO_request = () => {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="h-5 w-5"
+                          className="w-5 h-5"
                         >
                           <path
                             fillRule="evenodd"
@@ -148,7 +148,7 @@ const NGO_request = () => {
                           />
                         </svg>
                       </span>
-                    </Tooltip>
+                    </Tooltip> */}
                   </div>
                 </CardBody>
                 <CardFooter className="pt-3">
@@ -167,7 +167,7 @@ const NGO_request = () => {
           <RequestPage state={state} setState={setState} num={num} ans={ans} />
         </div>
       ) : (
-        <div className="flex justify-center items-center h-screen text-2xl font-bold text-purple-700">
+        <div className="flex items-center justify-center h-screen text-2xl font-bold text-purple-700">
           Sorry their is no Requests for now!
         </div>
       )}
@@ -180,8 +180,9 @@ const RequestPage = ({ state, setState, num, ans }) => {
   const handleit = () => {
     const updatedObject = { ...ans[num], role: "admin" };
 
-    dispatch(createNgoAdminAsync(updatedObject));
     dispatch(deleteNgoRequestAsync(updatedObject.id))
+    dispatch(createNgoAdminAsync(updatedObject));
+    dispatch(createUserAsync({email: ans[num].email, password: ans[num].password, role: "admin"}))
   };
 
   return state ? (
@@ -192,28 +193,28 @@ const RequestPage = ({ state, setState, num, ans }) => {
       ></div>
       <div className="flex items-center min-h-screen px-4 py-8">
         <div className="relative w-full  max-w-6xl p-4 mx-auto bg-white rounded-md h-[90vh] shadow-lg">
-          <div className="container mx-auto my-5 p-5">
+          <div className="container p-5 mx-auto my-5">
             <div className="md:flex no-wrap md:-mx-2">
               <div className="w-full md:w-3/12 md:mx-2">
-                <div className="bg-white p-3 border-t-4 border-green-400">
-                  <div className="image overflow-hidden">
+                <div className="p-3 bg-white border-t-4 border-green-400">
+                  <div className="overflow-hidden image">
                     <img
-                      className="h-auto w-full mx-auto"
+                      className="w-full h-auto mx-auto"
                       src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
                       alt=""
                     />
                   </div>
-                  <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
+                  <h1 className="my-1 text-xl font-bold leading-8 text-gray-900">
                     {ans[num].NGOName}
                   </h1>
-                  <p className="text-sm text-gray-500 hover:text-gray-600 leading-6 h-4">
+                  <p className="h-4 text-sm leading-6 text-gray-500 hover:text-gray-600">
                     {ans[num].About}
                   </p>
-                  <ul className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                  <ul className="px-3 py-2 mt-3 text-gray-600 bg-gray-100 divide-y rounded shadow-sm hover:text-gray-700 hover:shadow">
                     <li className="flex items-center py-3">
                       <span>Status</span>
                       <span className="ml-auto">
-                        <span className="bg-green-500 py-1 px-2 rounded text-white text-sm">
+                        <span className="px-2 py-1 text-sm text-white bg-green-500 rounded">
                           Active
                         </span>
                       </span>
@@ -226,9 +227,9 @@ const RequestPage = ({ state, setState, num, ans }) => {
                 </div>
                 <div className="my-4"></div>
               </div>
-              <div className="w-full md:w-9/12 mx-2 h-64">
-                <div className="bg-white p-3 shadow-sm rounded-sm">
-                  <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+              <div className="w-full h-64 mx-2 md:w-9/12">
+                <div className="p-3 bg-white rounded-sm shadow-sm">
+                  <div className="flex items-center space-x-2 font-semibold leading-8 text-gray-900">
                     <span clas="text-green-500">
                       <svg
                         className="h-5"
@@ -248,7 +249,7 @@ const RequestPage = ({ state, setState, num, ans }) => {
                     <span className="tracking-wide">About</span>
                   </div>
                   <div className="text-gray-700">
-                    <div className="grid md:grid-cols-2 text-sm">
+                    <div className="grid text-sm md:grid-cols-2">
                       <div className="grid grid-cols-2">
                         <div className="px-4 py-2 font-semibold">Name -</div>
                         <div className="px-4 py-2">{ans[num].NGOName}</div>
@@ -271,7 +272,7 @@ const RequestPage = ({ state, setState, num, ans }) => {
                         <div className="px-4 py-2 font-semibold">
                           Current Address
                         </div>
-                        <div className="px-4 py-2">{ans[num].adress}</div>
+                        <div className="px-4 py-2">{ans[num].address}</div>
                       </div>
 
                       <div className="grid grid-cols-2">
@@ -305,10 +306,10 @@ const RequestPage = ({ state, setState, num, ans }) => {
                   </div>
                 </div>
                 <div className="my-4"></div>
-                <div className="bg-white p-3 shadow-sm rounded-sm">
+                <div className="p-3 bg-white rounded-sm shadow-sm">
                   <div className="grid grid-cols-2">
                     <div>
-                      <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                      <div className="flex items-center mb-3 space-x-2 font-semibold leading-8 text-gray-900">
                         <span className="text-green-500">
                           <svg
                             className="h-5"
@@ -327,12 +328,12 @@ const RequestPage = ({ state, setState, num, ans }) => {
                         </span>
                         <span className="tracking-wide">Experience</span>
                       </div>
-                      <ul className="list-inside space-y-2">
+                      <ul className="space-y-2 list-inside">
                         <li>
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -340,7 +341,7 @@ const RequestPage = ({ state, setState, num, ans }) => {
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -348,7 +349,7 @@ const RequestPage = ({ state, setState, num, ans }) => {
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -356,14 +357,14 @@ const RequestPage = ({ state, setState, num, ans }) => {
                           <div className="text-teal-600">
                             Owner at Her Company Inc.
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
                       </ul>
                     </div>
                     <div>
-                      <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
+                      <div className="flex items-center mb-3 space-x-2 font-semibold leading-8 text-gray-900">
                         <span className="text-green-500">
                           <svg
                             className="h-5"
@@ -387,12 +388,12 @@ const RequestPage = ({ state, setState, num, ans }) => {
                         </span>
                         <span className="tracking-wide">Education</span>
                       </div>
-                      <ul className="list-inside space-y-2">
+                      <ul className="space-y-2 list-inside">
                         <li>
                           <div className="text-teal-600">
                             Masters Degree in Oxford
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -400,7 +401,7 @@ const RequestPage = ({ state, setState, num, ans }) => {
                           <div className="text-teal-600">
                             Bachelors Degree in LPU
                           </div>
-                          <div className="text-gray-500 text-xs">
+                          <div className="text-xs text-gray-500">
                             March 2020 - Now
                           </div>
                         </li>
@@ -408,21 +409,21 @@ const RequestPage = ({ state, setState, num, ans }) => {
                     </div>
                   </div>
                 </div>
-                <div className="absolute right-4 flex gap-8 mt-20">
+                <div className="absolute flex gap-8 mt-20 right-4">
                   <button
-                    className="bg-yellow-300 text-xl px-3 py-1 rounded-lg hover:bg-yellow-200"
+                    className="px-3 py-1 text-xl bg-yellow-300 rounded-lg hover:bg-yellow-200"
                     onClick={() => setState(false)}
                   >
                     Cancel
                   </button>
                   <button
-                    className="bg-red-500 text-xl px-3 py-1 rounded-lg hover:bg-red-300"
+                    className="px-3 py-1 text-xl bg-red-500 rounded-lg hover:bg-red-300"
                     onClick={() => dispatch(deleteNgoRequestAsync(ans[num].id))}
                   >
                     Reject
                   </button>
                   <button
-                    className="bg-green-400 text-xl px-3 py-1 rounded-lg hover:bg-green-500"
+                    className="px-3 py-1 text-xl bg-green-400 rounded-lg hover:bg-green-500"
                     onClick={() => handleit()}
                   >
                     Accept

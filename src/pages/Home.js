@@ -1,7 +1,7 @@
 import NavBar from "../features/navbar/Navbar";
 import ProductList from "../features/product-list/components/ProductList";
 import { selectLoggedInUser } from "../features/auth/authSlice";
-import NgoList from "../features/auth/compponents/NgoList";
+import NgoList from "../features/owner/components/NgoList";
 import { useSelector } from "react-redux";
 import { selectUserInfo } from "../features/user/userSlice";
 

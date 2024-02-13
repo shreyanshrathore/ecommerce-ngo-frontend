@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import ngo from "../../../assets/ngo-nongovernmental-organization-serve-specific-social-template-hand-drawn-illustration_2175-7898.avif";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { checkUserAsync, selectError, selectLoggedInUser } from "../authSlice";
+import { checkAdminAsync, checkUserAsync, entity, loginAdminAsync, loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
+import Radio from "@mui/material/Radio";
+import { fetchLoggedInAdminAsync, fetchLoggedInUserAsync } from "../../user/userSlice";
 
 const LoginPage = () => {
+  const [selectedValue, setSelectedValue] = useState("user");
+
+
+  const handleChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
   const dispatch = useDispatch();
   const {
     register,
@@ -18,14 +27,34 @@ const LoginPage = () => {
   const user = useSelector(selectLoggedInUser);
 
   const onSubmit = (data) => {
-    dispatch(checkUserAsync({ email: data.email, password: data.password }));
+    console.log({ email: data.email, password: data.password })
+    if(selectedValue == "admin"){
+      console.log(selectedValue)
+      dispatch(loginAdminAsync({ email: data.email, password: data.password }));
+      dispatch(fetchLoggedInAdminAsync())
+    dispatch(entity(selectedValue));
+    }
+    else{
+      console.log("hite")
+      dispatch(loginUserAsync({ email: data.email, password: data.password }));
+      dispatch(fetchLoggedInUserAsync());
+    }
+    
   };
 
   return (
     <div className="w-[100vw] h-[100vh]  flex items-center justify-center">
       {/* {user && user.role == "admin" && <Navigate to = "/admin" replace = {true}></Navigate>} */}
-      {user && <Navigate to={`${user.role == 'admin'? '/admin': '/'}`} replace={true}></Navigate>}
-      
+      {user && (
+        <Navigate
+        to={`${selectedValue == "admin" ? "/admin" : "/"}`}
+        replace={true}
+        >
+
+          {console.log(selectedValue)}
+        </Navigate>
+      )}
+
       <img
         className="rounded-3xl h-[600px] ml-32 lg:block hidden mr-96"
         src={ngo}
@@ -71,14 +100,32 @@ const LoginPage = () => {
             </div>
             <p className="mt-1">
               Not a Member?
-              
               <span className="font-semibold leading-6 ml-2 text-indigo-600 hover:text-indigo-500">
                 <Link to={"/signup"}>Sign Up here!</Link>
               </span>
             </p>
           </div>
 
-          
+          <div>
+            <label>user</label>
+            <Radio
+              checked={selectedValue === "user"}
+              onChange={handleChange}
+              value="user"
+              name="radio-buttons"
+              inputProps={{ "aria-label": "user" }}
+            />
+
+            <label>admin</label>
+            <Radio
+              checked={selectedValue === "admin"}
+              onChange={handleChange}
+              value="admin"
+              name="radio-buttons"
+              inputProps={{ "aria-label": "admin" }}
+            />
+          </div>
+
           <div className="w-full flex justify-center mt-8">
             <button
               type="submit"
@@ -87,7 +134,6 @@ const LoginPage = () => {
               Submit
             </button>
           </div>
-          
         </form>
       </div>
     </div>

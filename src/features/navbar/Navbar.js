@@ -22,6 +22,7 @@ const navigation = [
   { name: "Admin Products", link: "/admin", admin: true },
   { name: "Orders", link: "/admin/orders", admin: true },
   { name: "NGO Request", link: "/admin/ngo_request", owner: true },
+  { name: "Product Request", link: "/product_request", owner: true },
 ];
 const userNavigation = [
   { name: "My Profile", href: "/user/profile" },

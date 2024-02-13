@@ -18,8 +18,8 @@ const AdminPage = () => {
     <div>
       <Navbar>
         <Routes>
-          <Route path="/" element={<AdminDashboard />} />
-          <Route path="/products" element={<AdminProducts />} />
+          <Route path="/" element={ <AdminDashboard /> } />
+          <Route path="/products" element={<AdminProducts/>} />
           <Route path="/productInfo" element={<AdminProductInfo />} />
           <Route path="/order" element={<AdminOrder />} />
         </Routes>

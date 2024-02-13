@@ -3,6 +3,7 @@ import {
   fetchLoggedInUserOrders,
   updateUser,
   fetchLoggedInUser,
+  fetchLoggedInAdmin,
 } from './userAPI';
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
 export const fetchLoggedInUserOrderAsync = createAsyncThunk(   
   'user/fetchLoggedInUserOrders',
   async (id) => {
-    const response = await fetchLoggedInUserOrders(id);
+    const response = await fetchLoggedInUserOrders();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -24,6 +25,15 @@ export const fetchLoggedInUserAsync = createAsyncThunk(
   'user/fetchLoggedInUser',
   async () => {
     const response = await fetchLoggedInUser();
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const fetchLoggedInAdminAsync = createAsyncThunk(
+  'user/fetchLoggedInAdmin',
+  async () => {
+    const response = await fetchLoggedInAdmin();
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -67,6 +77,14 @@ export const userSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchLoggedInUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        // this info can be different or more from logged-in User info
+        state.userInfo = action.payload;
+      })
+      .addCase(fetchLoggedInAdminAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchLoggedInAdminAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         // this info can be different or more from logged-in User info
         state.userInfo = action.payload;

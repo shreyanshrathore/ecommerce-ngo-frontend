@@ -14,11 +14,12 @@ export default function UserOrders() {
   // console.log(orders)
 
   useEffect(() => {
-    dispatch(fetchLoggedInUserOrderAsync(userInfo.id));
+    dispatch(fetchLoggedInUserOrderAsync());
   }, [dispatch, userInfo]);
 
   return (
     <div>
+      
       {orders.map((order) => (
         <div key={order.id}>
           <div>

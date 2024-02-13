@@ -2,11 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentOption: 0,
-  currentProduct: {},
+  currentProduct: null,
+  newProduct: false,
   status: "idle",
 };
 
-export const cartSlice = createSlice({
+export const optionSlice = createSlice({
   name: "option",
   initialState,
   reducers: {
@@ -16,13 +17,17 @@ export const cartSlice = createSlice({
     productInfo: (state, action) => {
       state.currentProduct = action.payload;
     },
+    newProduct: (state, action) => {
+      state.newProduct = action.payload;
+    },
   },
 });
 
-export const { optionChange, productInfo } = cartSlice.actions;
+export const { optionChange, productInfo, newProduct } = optionSlice.actions;
 
-export const selectOptions = (state) => state.admin.currentOption;
-export const selectProduct = (state) => state.admin.currentProduct;
+export const selectnewProduct = (state) => state.option.newProduct;
+export const selectOptions = (state) => state.option.currentOption;
+export const selectProduct = (state) => state.option.currentProduct;
 
 
-export default cartSlice.reducer;
+export default optionSlice.reducer;

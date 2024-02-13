@@ -304,6 +304,7 @@ function Checkout() {
                 Choose from Existing addresses
               </p>
               <ul>
+                {console.log(user)}
                 {user.addresses.map((address, index) => (
                   <li
                     key={index}
@@ -397,7 +398,7 @@ function Checkout() {
                 </h1>
                 <div className="flow-root">
                   <ul role="list" className="-my-6 divide-y divide-gray-200">
-                    {items.map((item) => (
+                    {items && items.map((item) => (
                       <li key={item.id} className="flex py-6">
                         <div className="flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md">
                           <img

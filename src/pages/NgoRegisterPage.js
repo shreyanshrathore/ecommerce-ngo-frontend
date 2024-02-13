@@ -1,5 +1,5 @@
 import React from 'react'
-import Ngoregister from '../features/auth/compponents/NgoRegister'
+import Ngoregister from '../features/owner/components/NgoRegister'
 
 const NgoRegister = () => {
   return (

@@ -1,9 +1,6 @@
-
-
-
 export function createNgoRequest(userdata) {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:8080/ngo', {
+      const response = await fetch('http://localhost:8000/admin/req', {
         method: "POST",
         body: JSON.stringify(userdata),
         headers: {"content-type":"application/json"}
@@ -17,7 +14,7 @@ export function createNgoRequest(userdata) {
   
   export function fetchNgoRequest() {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:8080/ngo') 
+      const response = await fetch('http://localhost:8000/admin/req') 
       const data = await response.json()
       resolve({data})
     }
@@ -26,7 +23,7 @@ export function createNgoRequest(userdata) {
   
   export function deleteNgoRequest(id) {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:8080/ngo/'+ id, {
+      const response = await fetch('http://localhost:8000/admin/reject'+ id, {
         method: "DELETE",
         headers: {"content-type":"application/json"}
       }) 
@@ -40,7 +37,7 @@ export function createNgoRequest(userdata) {
     userdata.role = "admin";
     return new Promise(async (resolve) =>{
       console.log(userdata);
-      const response = await fetch('http://localhost:8080/admin', {
+      const response = await fetch('http://localhost:8000/admin/new'+ userdata.id, {
         method: "POST",
         body: JSON.stringify(userdata),
         headers: {"content-type":"application/json"}
@@ -54,7 +51,7 @@ export function createNgoRequest(userdata) {
   
   export function fetchNgoAdmin() {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:8080/admin', {
+      const response = await fetch('http://localhost:8000/admin', {
         method: "GET",
       }) 
       const data = await response.json()
@@ -69,7 +66,7 @@ export function createNgoRequest(userdata) {
   export function createUser(userData) {
     return new Promise(async (resolve) => {
       console.log(userData)
-      const response = await fetch('http://localhost:8080/auth/signup', {
+      const response = await fetch('http://localhost:8000/user/register', {
         method: 'POST',
         body: JSON.stringify(userData),
         headers: { 'content-type': 'application/json' },
@@ -82,7 +79,7 @@ export function createNgoRequest(userdata) {
   export function checkUser(loginInfo) {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch('http://localhost:8080/auth/login', {
+        const response = await fetch('http://localhost:8000/user/login', {
           method: 'POST',
           body: JSON.stringify(loginInfo),
           headers: { 'content-type': 'application/json' },
@@ -104,7 +101,7 @@ export function createNgoRequest(userdata) {
   export function checkAuth() {
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await fetch('/auth/check');
+        const response = await fetch('/user/check');
         if (response.ok) {
           const data = await response.json();
           resolve({ data });

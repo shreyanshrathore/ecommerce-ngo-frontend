@@ -17,6 +17,7 @@ const NgoList = () => {
     dispatch(fetchNgoAdminAsync());
   }, []);
   const adminList = useSelector(selectNGOList);
+  console.log(adminList)
   return (
     <div>
       <div>
@@ -41,11 +42,11 @@ const NgoList = () => {
                           <td className="px-6 py-3 text-center">{index+1  }</td>
 
                           <td className="px-6 py-3 text-center">
-                            {admin.NGOName}
+                            {admin.ngoInformation[0].name}
                           </td>
 
                           <td className="px-6 py-3 text-center">
-                            {admin.NGOName}
+                            {admin.ngoInformation[0].details}
                           </td>
 
                           <td className="px-6 py-3 text-center">

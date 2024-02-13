@@ -6,6 +6,7 @@ import orderReducer from '../features/order/orderSlice'
 import userReducer from '../features/user/userSlice'
 import adminReducer from '../features/adminPanel/Redux/AdminSlice'
 import ownerReducer from '../features/owner/ownerslice'
+import optionReducer from '../features/adminPanel/Redux/AdminSlice'
 export const store = configureStore({
   reducer: {
     product: productReducer,
@@ -14,6 +15,7 @@ export const store = configureStore({
     order: orderReducer,
     user: userReducer,
     admin: adminReducer,
-    owner: ownerReducer
+    owner: ownerReducer,
+    option: optionReducer
   },
 });
